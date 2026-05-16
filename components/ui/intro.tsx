@@ -3,7 +3,7 @@ import authorImage from '@/public/images/authors/srv.jpg'
 
 export default function Intro() {
   return (
-    <section className='relative flex flex-col-reverse items-center gap-x-12 gap-y-12 pb-24 pt-16 md:flex-row md:items-center'>
+    <section className='relative flex flex-col-reverse items-center gap-x-12 gap-y-12 pb-8 pt-16 md:flex-row md:items-center'>
       {/* Cinematic Glowing Background Orbs */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/4 w-[400px] h-[400px] bg-primary/20 rounded-full blur-[120px] opacity-70 pointer-events-none animate-in fade-in duration-1000" />
       <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 w-[300px] h-[300px] bg-secondary/30 rounded-full blur-[100px] opacity-60 pointer-events-none animate-in fade-in duration-1000 delay-300" />

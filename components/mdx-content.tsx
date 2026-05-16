@@ -1,27 +1,24 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import { JSX } from 'react';
-import highlight from 'sugar-high'
+import { highlight } from 'sugar-high'
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
-import Counter from '@/components/counter'
-import { propagateServerField } from 'next/dist/server/lib/render-server';
 
-function Code{children, ...props}: any){
+function Code({ children, ...props }: any) {
   let codeHTML = highlight(children)
-  return <code dangerouslySetInnerHTML={{__html: codeHTML}} {...pr ops} />
+  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
 }
+
 // You can map HTML elements to custom React components here
 const components = {
   code: Code,
-  Counter,
 }
 
-
-
-
-export default function MDXContent({ source }: { source: string }) {
+export default function MDXContent(
+  props: JSX.IntrinsicAttributes & MDXRemoteProps
+) {
   return (
-    <MDXRemote {...props}
-    source={source} components={{...components, ...Code(propagateServerField.components || {})  }} />
+    <MDXRemote
+      {...props}
+      components={{ ...components, ...(props.components || {}) }}
+    />
   )
 }

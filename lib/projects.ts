@@ -88,16 +88,18 @@ export async function getProjects(limit?: number): Promise<ProjectMetadata[]> {
     })
     if (response.ok) {
       const repos = await response.json()
-      githubProjects = repos
-        .filter((repo: any) => !repo.fork && repo.description) // filter out forks and repos without descriptions
-        .map((repo: any) => ({
-          title: repo.name.replace(/-/g, ' '),
-          summary: repo.description,
-          image: '',
-          author: 'Sravan',
-          publishedAt: repo.created_at.split('T')[0],
-          slug: repo.name.toLowerCase()
-        }))
+      if (Array.isArray(repos)) {
+        githubProjects = repos
+          .filter((repo: any) => !repo.fork && repo.description) // filter out forks and repos without descriptions
+          .map((repo: any) => ({
+            title: repo.name.replace(/-/g, ' '),
+            summary: repo.description,
+            image: '',
+            author: 'Sravan',
+            publishedAt: repo.created_at.split('T')[0],
+            slug: repo.name.toLowerCase()
+          }))
+      }
     }
   } catch (error) {
     console.error('Error fetching github repos:', error)
