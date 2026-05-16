@@ -58,7 +58,7 @@ export default function Projects({
         <li key={project.slug} className='group relative flex h-full'>
           <Link 
             href={`/projects/${project.slug}`} 
-            className='flex h-full w-full flex-col overflow-hidden rounded-3xl border border-border/80 bg-background/95 dark:bg-white/[0.03] dark:border-white/10 p-6 shadow-xl shadow-black/5 backdrop-blur-2xl transition-all duration-500 hover:border-primary/50 hover:bg-primary/[0.02] hover:shadow-[0_0_40px_-10px_rgba(var(--primary),0.4)] hover:-translate-y-2'
+            className='flex h-full w-full flex-col overflow-hidden rounded-3xl border border-border/80 bg-background/95 dark:bg-white/[0.03] dark:border-white/10 p-6 shadow-xl shadow-black/5 dark:shadow-white/5 backdrop-blur-2xl transition-all duration-500 hover:border-primary/50 hover:bg-primary/[0.02] hover:shadow-[0_0_40px_-10px] hover:shadow-primary/40 dark:hover:shadow-primary/40 hover:-translate-y-2'
           >
             {project.image ? (
               <div className='relative mb-6 h-48 w-full shrink-0 overflow-hidden rounded-xl'>

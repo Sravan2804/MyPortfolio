@@ -24,13 +24,13 @@ export default function NotFound() {
         </h2>
         
         <p className='mb-12 max-w-md text-base text-muted-foreground sm:text-lg'>
-          The coordinates you entered lead to a sector that doesn't exist. Let's get you back to familiar territory.
+          The coordinates you entered lead to a sector that doesn&apos;t exist. Let&apos;s get you back to familiar territory.
         </p>
 
         {/* Glassy Return Button */}
         <Link
           href='/'
-          className='group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-black/10 bg-black/5 px-8 py-4 font-semibold text-foreground shadow-2xl backdrop-blur-xl transition-all hover:ring-2 hover:ring-primary/50 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10'
+          className='group relative inline-flex items-center gap-3 overflow-hidden rounded-full border border-black/10 bg-black/5 px-8 py-4 font-semibold text-foreground shadow-2xl shadow-black/10 dark:shadow-white/10 backdrop-blur-xl transition-all hover:ring-2 hover:ring-primary/50 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10'
         >
           {/* Shine Sweep Effect */}
           <div className='absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-150%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(150%)]'>

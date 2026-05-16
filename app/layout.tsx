@@ -25,29 +25,35 @@ export const metadata: Metadata = {
   description: "Portfolio of Rama Sravan, an AI Engineer based in Ireland.",
 };
 
+import { ViewTransitions } from 'next-view-transitions';
+import CommandMenu from "@/components/command-menu";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={cn(
-        "flex min-h-screen flex-col font-sans antialiased relative",
-        inter.variable,
-        playfair.variable,
-        geistMono.variable,
-      )}
-      >
-        {/* Subtle Ambient Grid Background */}
-        <div className="pointer-events-none fixed inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-        
-        <Providers>
-          <Header />
-          <main className="grow">{children}</main>
-          <Footer />
-        </Providers>
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en" suppressHydrationWarning>
+        <body className={cn(
+          "flex min-h-screen flex-col font-sans antialiased relative",
+          inter.variable,
+          playfair.variable,
+          geistMono.variable,
+        )}
+        >
+          {/* Subtle Ambient Grid Background */}
+          <div className="pointer-events-none fixed inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+          
+          <Providers>
+            <Header />
+            <main className="grow">{children}</main>
+            <Footer />
+            <CommandMenu />
+          </Providers>
+        </body>
+      </html>
+    </ViewTransitions>
   )
 }

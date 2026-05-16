@@ -8,7 +8,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { ContactFormSchema } from '@/lib/schemas'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'import { sendEmail } from '@/lib/actions'
+import { Textarea } from '@/components/ui/textarea'
+import { sendEmail } from '@/lib/actions'
 
 type Inputs = z.infer<typeof ContactFormSchema>
 
@@ -19,7 +20,8 @@ export default function ContactForm() {
     reset,
     formState: { errors, isSubmitting }
   } = useForm<Inputs>({
-    resolver: zodResolver(ContactFormSchema),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: zodResolver(ContactFormSchema as any),
     defaultValues: {
       name: '',
       email: '',
@@ -77,10 +79,10 @@ export default function ContactForm() {
       </svg>
 
       {/* Form */}
-      <div className='relative'>
+      <div className='relative mx-auto max-w-3xl overflow-hidden rounded-3xl border border-border/80 bg-background/95 p-8 shadow-2xl shadow-black/10 dark:shadow-white/10 backdrop-blur-3xl dark:border-white/10 dark:bg-white/[0.03] sm:p-12'>
         <form
           onSubmit={handleSubmit(processForm)}
-          className='mt-16 lg:flex-auto'
+          className='lg:flex-auto'
           noValidate
         >
           <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
