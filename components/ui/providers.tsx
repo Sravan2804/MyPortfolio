@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useEffect } from 'react'
-import { ThemeProvider, useTheme } from "next-themes"
+import React from 'react'
+import { ThemeProvider } from "next-themes"
 
 // Suppress the React 19 hydration warning for next-themes script injection
 if (typeof window !== 'undefined') {
