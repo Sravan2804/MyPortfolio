@@ -1,17 +1,60 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
+import { Search } from 'lucide-react'
 
 import { ProjectMetadata } from '@/lib/projects'
 import { formatDate } from '@/lib/utils'
 
 export default function Projects({
-  projects
+  projects,
+  showSearch = false
 }: {
   projects: ProjectMetadata[]
+  showSearch?: boolean
 }) {
+  const [query, setQuery] = useState('')
+
+  const filteredProjects = projects.filter(project => {
+    if (!query) return true
+    const searchContent = ((project.title || '') + ' ' + (project.summary || '')).toLowerCase()
+    return searchContent.includes(query.toLowerCase())
+  })
+
   return (
-    <ul className={`grid grid-cols-1 gap-8 ${projects.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'}`}>
-      {projects.map(project => (
+    <div className='w-full'>
+      {showSearch && (
+        <div className='relative mb-16 mx-auto group w-full max-w-md transition-all duration-500 focus-within:max-w-2xl'>
+          {/* Glowing background effect */}
+          <div className='absolute -inset-1 rounded-full bg-gradient-to-r from-primary/30 via-secondary/30 to-primary/30 opacity-20 blur-xl transition-all duration-500 group-focus-within:opacity-70 group-focus-within:blur-2xl group-hover:opacity-50'></div>
+          
+          <div className='relative flex items-center'>
+            <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-5 text-muted-foreground/50 transition-colors duration-300 group-focus-within:text-primary'>
+              <Search className='h-5 w-5' />
+            </div>
+            
+            <input
+              type='text'
+              placeholder='Search through projects, tech stacks, or keywords...'
+              className='block w-full rounded-full border border-black/5 bg-black/5 py-4 pl-14 pr-16 text-sm text-foreground shadow-lg backdrop-blur-2xl transition-all duration-300 placeholder:text-muted-foreground/50 focus:border-primary/40 focus:bg-background/80 focus:outline-none focus:ring-4 focus:ring-primary/10 dark:border-white/10 dark:bg-white/5 dark:focus:bg-black/40'
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+            />
+            
+            <div className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4'>
+              <kbd className='hidden sm:inline-flex items-center gap-1 rounded-md border border-black/10 bg-black/5 px-2.5 py-1 text-[10px] font-semibold text-muted-foreground opacity-60 transition-all duration-300 group-focus-within:opacity-100 group-focus-within:text-primary/70 dark:border-white/10 dark:bg-white/5'>
+                <span className='text-xs'>⌘</span>K
+              </kbd>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {filteredProjects.length > 0 ? (
+        <ul className={`grid grid-cols-1 gap-8 ${projects.length === 2 && !showSearch ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'}`}>
+          {filteredProjects.map(project => (
         <li key={project.slug} className='group relative flex h-full'>
           <Link 
             href={`/projects/${project.slug}`} 
@@ -52,5 +95,11 @@ export default function Projects({
         </li>
       ))}
     </ul>
+      ) : (
+        <div className='py-24 text-center text-muted-foreground'>
+          <p className='text-lg'>No projects found matching &quot;{query}&quot;</p>
+        </div>
+      )}
+    </div>
   )
 }
