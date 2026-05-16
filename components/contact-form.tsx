@@ -139,9 +139,9 @@ export default function ContactForm() {
             <Button
               type='submit'
               disabled={isSubmitting}
-              className='w-full disabled:opacity-50'
+              className='w-full cursor-pointer disabled:opacity-50'
             >
-              {isSubmitting ? 'Submitting...' : 'Contact Us'}
+              {isSubmitting ? 'Submitting...' : 'Contact Me'}
             </Button>
           </div>
           <p className='mt-4 text-xs text-muted-foreground'>
