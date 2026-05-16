@@ -9,17 +9,24 @@ const timeline = [
     icon: <Briefcase className="h-5 w-5" />,
   },
   {
-    title: "Software Developer",
-    company: "Various Startups",
-    date: "2021 - 2023",
-    description: "Built scalable web applications using Next.js, React, and serverless architectures. Specialized in crafting premium glassmorphic UI/UX and integrating robust backend services.",
+    title: "Software Intern",
+    company: "RINL-Vizag Steel Plant",
+    date: "July 2024 - Aug 2024",
+    description: "Designed and deployed a Python-based real-time asset tracking system, integrating QR identification and live location tracking APIs to automate monitoring of daily truck and trailer movements.",
     icon: <Briefcase className="h-5 w-5" />,
   },
   {
     title: "B.Tech in Computer Science",
-    company: "University",
-    date: "2019 - 2023",
+    company: "Andhra University",
+    date: "2021 - 2025",
     description: "Specialized in Artificial Intelligence, Data Structures, and Machine Learning. Graduated with top honors.",
+    icon: <GraduationCap className="h-5 w-5" />,
+  },
+  {
+    title: "MEngg. in Computer Vision and Artificial Intelligence",
+    company: "University of Limerick",
+    date: "2025 - 2026",
+    description: "Specializing in advanced Computer Vision, AI Engineering, and Real-World AI Applications.",
     icon: <GraduationCap className="h-5 w-5" />,
   }
 ]

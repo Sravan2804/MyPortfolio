@@ -1,9 +1,8 @@
 import React from 'react'
 
 const technologies = [
-  "Python", "TypeScript", "React", "Next.js", "Tailwind CSS", 
-  "AWS", "PyTorch", "TensorFlow", "OpenCV", "FastAPI", "Node.js",
-  "PostgreSQL", "Docker", "Git"
+  "Python", "TypeScript", "React", "Next.js", "Tailwind CSS", "C", "Pytorch", "Tensorflow","HTML", "CSS",
+  "AWS", "PyTorch", "TensorFlow", "OpenCV", "FastAPI", "Node.js", "Git", "Streamlit"
 ]
 
 export default function TechMarquee() {
