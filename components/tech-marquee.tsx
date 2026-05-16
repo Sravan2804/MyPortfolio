@@ -17,7 +17,7 @@ export default function TechMarquee() {
         {[...technologies, ...technologies, ...technologies].map((tech, index) => (
           <div 
             key={index} 
-            className="flex items-center justify-center text-xl font-bold tracking-wider text-muted-foreground transition-all duration-300 hover:text-primary hover:shadow-[0_0_20px_-5px] hover:shadow-primary/50 cursor-default"
+            className="flex items-center justify-center rounded-2xl border border-white/5 bg-white/5 px-8 py-4 text-xl font-bold tracking-wider text-muted-foreground shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:bg-white/10 hover:text-primary hover:shadow-[0_0_30px_-5px] hover:shadow-primary/50 cursor-default"
           >
             {tech}
           </div>
