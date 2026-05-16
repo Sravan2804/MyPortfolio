@@ -10,12 +10,12 @@ export default function Projects({
   projects: ProjectMetadata[]
 }) {
   return (
-    <ul className='grid grid-cols-1 gap-8 sm:grid-cols-2'>
+    <ul className={`grid grid-cols-1 gap-8 ${projects.length === 2 ? 'sm:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'}`}>
       {projects.map(project => (
         <li key={project.slug} className='group relative flex h-full'>
           <Link 
             href={`/projects/${project.slug}`} 
-            className='flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border/50 bg-card/30 p-6 backdrop-blur-md transition-all duration-500 hover:border-primary/50 hover:bg-card/50 hover:shadow-[0_0_30px_-5px_rgba(var(--primary),0.3)] hover:-translate-y-1'
+            className='flex h-full w-full flex-col overflow-hidden rounded-3xl border border-border/80 bg-background/95 dark:bg-white/[0.03] dark:border-white/10 p-6 shadow-xl shadow-black/5 backdrop-blur-2xl transition-all duration-500 hover:border-primary/50 hover:bg-primary/[0.02] hover:shadow-[0_0_40px_-10px_rgba(var(--primary),0.4)] hover:-translate-y-2'
           >
             {project.image ? (
               <div className='relative mb-6 h-48 w-full shrink-0 overflow-hidden rounded-xl'>
