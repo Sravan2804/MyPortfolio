@@ -20,7 +20,7 @@ export async function sendEmail(data: ContactFormInputs) {
     const { data, error } = await resend.emails.send({
       from: 'Contact Form <onboarding@resend.dev>',
       to: 'ramasravan007@gmail.com', // Must be your verified Resend account email
-      reply_to: email, // This allows you to reply directly to the visitor
+      replyTo: email, // This allows you to reply directly to the visitor
       subject: `Contact form submission from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
       html: `<h3>New Contact Form Submission</h3><p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Message:</strong><br/>${message}</p>`,
