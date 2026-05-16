@@ -9,7 +9,7 @@ export type PostMetadata = {
   date?: string;
   draft?: boolean;
   slug: string;
-  [key: string]: any;
+  [key: string]: unknown;
 };
 
 export async function getPostBySlug(slug: string) {

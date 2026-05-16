@@ -67,9 +67,17 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
     }
 
     return null
-  } catch (error) {
+  } catch {
     return null
   }
+}
+
+interface GitHubRepo {
+  name: string
+  description: string
+  fork: boolean
+  created_at: string
+  html_url: string
 }
 
 export async function getProjects(limit?: number): Promise<ProjectMetadata[]> {
@@ -90,8 +98,8 @@ export async function getProjects(limit?: number): Promise<ProjectMetadata[]> {
       const repos = await response.json()
       if (Array.isArray(repos)) {
         githubProjects = repos
-          .filter((repo: any) => !repo.fork && repo.description) // filter out forks and repos without descriptions
-          .map((repo: any) => ({
+          .filter((repo: GitHubRepo) => !repo.fork && repo.description) // filter out forks and repos without descriptions
+          .map((repo: GitHubRepo) => ({
             title: repo.name.replace(/-/g, ' '),
             summary: repo.description,
             image: '',

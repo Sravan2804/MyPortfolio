@@ -2,8 +2,10 @@ import { JSX } from 'react';
 import { highlight } from 'sugar-high'
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
 
-function Code({ children, ...props }: any) {
-  let codeHTML = highlight(children)
+import React from 'react'
+
+function Code({ children, ...props }: React.HTMLAttributes<HTMLElement>) {
+  const codeHTML = highlight(children as string)
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
 }
 

@@ -8,10 +8,7 @@ import Header from "@/components/ui/header";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+
 
 const playfair = Playfair_Display({
   variable: "--font-playfair-display",
