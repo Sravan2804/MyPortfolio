@@ -22,6 +22,7 @@ function ToasterProvider() {
 
   return (
     <Toaster
+    closeButton
       position='top-right'
       theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
     />
