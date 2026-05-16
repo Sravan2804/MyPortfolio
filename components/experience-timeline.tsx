@@ -5,7 +5,7 @@ const timeline = [
     title: "AI Engineer",
     company: "Freelance / Personal Projects",
     date: "2023 - Present",
-    description: "Developing agentic workflows, LLM orchestration, and advanced computer vision models for scalable deployment. Built tools like ScholarSync AI and an Anti-Gravity Resume Screener.",
+    description: "Developing agentic workflows, LLM orchestration, and advanced computer vision models for scalable deployment. Built tools like ScholarSync AI and Anti-Gravity Resume Screener.",
     icon: <Briefcase className="h-5 w-5" />,
   },
   {
