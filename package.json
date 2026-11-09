@@ -7,9 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "webpack": "webpack --config webpack.config.js",
-    "webpack-build": "webpack --config webpack.config.js"
+    "lint": "eslint"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -46,8 +44,6 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
     "tailwindcss": "^4",
-    "typescript": "^5",
-    "webpack": "^5.112.2",
-    "webpack-cli": "^7.3.1"
+    "typescript": "^5"
   }
 }
