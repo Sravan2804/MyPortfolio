@@ -2,9 +2,9 @@ name: NodeJS with Webpack
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
   build:
@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [20.x]
 
     steps:
       - uses: actions/checkout@v4
@@ -21,13 +21,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: npm
 
       - name: Install dependencies
-        run: npm install --no-fund --no-audit
+        run: npm install
 
-      - name: Install webpack and webpack-cli
-        run: npm install --save-dev webpack webpack-cli --no-fund --no-audit
+      - name: Validate code quality
+        run: npm run lint
 
-      - name: Build
-        run: npx webpack --mode production
+      - name: Build app
+        run: npm run build
