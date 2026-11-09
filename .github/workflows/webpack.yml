@@ -12,18 +12,22 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.x, 22.x]
+        node-version: [18.x, 20.x, 22.x]
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: npm
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
 
-    - name: Install dependencies and build
-      run: |
-        npm ci
-        npm run build
+      - name: Install dependencies
+        run: npm install --no-fund --no-audit
+
+      - name: Install webpack and webpack-cli
+        run: npm install --save-dev webpack webpack-cli --no-fund --no-audit
+
+      - name: Build
+        run: npx webpack --mode production
