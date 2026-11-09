@@ -26,7 +26,7 @@ export default async function Project({
     notFound()
   }
 
-  const { metadata, content } = project
+  const { metadata, content, isMarkdown } = project
   const { title, image, author, publishedAt } = metadata
 
   return (
@@ -59,7 +59,10 @@ export default async function Project({
         </header>
 
         <main className='prose mt-16 dark:prose-invert'>
-          <MDXContent source={content} />
+          <MDXContent
+            source={content}
+            options={isMarkdown ? { mdxOptions: { format: 'md' } } : undefined}
+          />
         </main>
       </div>
     </section>

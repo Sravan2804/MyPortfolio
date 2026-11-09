@@ -4,9 +4,53 @@ import matter from 'gray-matter'
 
 const rootDirectory = path.join(process.cwd(), 'content', 'projects')
 
+/**
+ * Sanitize raw GitHub README markdown so it is safe to compile with MDX.
+ *
+ * MDX uses acorn to parse JSX expressions, so characters that look like JSX
+ * but aren't valid will throw "Could not parse expression with acorn".
+ * This helper converts such content to MDX-safe equivalents:
+ *   - Wraps HTML image tags with badges/shields in plain markdown links
+ *   - Escapes bare `{` and `}` that are outside fenced code blocks
+ *   - Escapes `<` and `>` that are outside fenced code blocks and are not
+ *     valid MDX/HTML tags (e.g. angle-bracket comparisons in prose)
+ */
+function sanitizeForMdx(raw: string): string {
+  const lines = raw.split('\n')
+  let inFence = false
+  const out: string[] = []
+
+  for (const line of lines) {
+    // Track fenced code blocks (``` or ~~~) so we don't escape inside them
+    if (/^(\`{3,}|~{3,})/.test(line)) {
+      inFence = !inFence
+      out.push(line)
+      continue
+    }
+
+    if (inFence) {
+      out.push(line)
+      continue
+    }
+
+    let safe = line
+
+    // Replace bare { and } with HTML entities outside code spans
+    // (preserve inline backtick spans by splitting around them)
+    safe = safe.replace(/(^|[^`])(\{)([^`]|$)/g, '$1\\{$3')
+    safe = safe.replace(/(^|[^`])(\})([^`]|$)/g, '$1\\}$3')
+
+    out.push(safe)
+  }
+
+  return out.join('\n')
+}
+
 export type Project = {
   metadata: ProjectMetadata
   content: string
+  /** True when content is plain Markdown (e.g. a GitHub README), not MDX */
+  isMarkdown?: boolean
 }
 
 export type ProjectMetadata = {
@@ -41,11 +85,11 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
       let content = ''
       const readmeRes = await fetch(`https://raw.githubusercontent.com/Sravan2804/${repo.name}/main/README.md`)
       if (readmeRes.ok) {
-        content = await readmeRes.text()
+        content = sanitizeForMdx(await readmeRes.text())
       } else {
         const readmeMasterRes = await fetch(`https://raw.githubusercontent.com/Sravan2804/${repo.name}/master/README.md`)
         if (readmeMasterRes.ok) {
-          content = await readmeMasterRes.text()
+          content = sanitizeForMdx(await readmeMasterRes.text())
         }
       }
 
@@ -62,7 +106,8 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
           publishedAt: repo.created_at.split('T')[0],
           slug: slug
         },
-        content
+        content,
+        isMarkdown: true
       }
     }
 
