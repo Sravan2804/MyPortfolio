@@ -9,6 +9,11 @@ type ContactFormInputs = z.infer<typeof ContactFormSchema>
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function sendEmail(data: ContactFormInputs) {
+  if (!process.env.RESEND_API_KEY) {
+    console.error('RESEND_API_KEY is not configured in environment variables.')
+    return { error: 'RESEND_API_KEY is not configured on the server.' }
+  }
+
   const result = ContactFormSchema.safeParse(data)
 
   if (result.error) {

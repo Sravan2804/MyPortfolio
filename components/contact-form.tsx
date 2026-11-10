@@ -1,8 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import { z } from 'zod'
 import Link from 'next/link'
 import { toast } from 'sonner'
+import { CheckCircle2 } from 'lucide-react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ContactFormSchema } from '@/lib/schemas'
@@ -14,6 +16,8 @@ import { sendEmail } from '@/lib/actions'
 type Inputs = z.infer<typeof ContactFormSchema>
 
 export default function ContactForm() {
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
   const {
     register,
     handleSubmit,
@@ -33,11 +37,13 @@ export default function ContactForm() {
     const result = await sendEmail(data)
 
     if (result?.error) {
-      toast.error('An error occurred! Please try again.')
+      console.error('Submission error:', result.error)
+      toast.error(typeof result.error === 'string' ? result.error : 'An error occurred! Please try again.')
       return
     }
 
     toast.success('Message sent successfully!')
+    setIsSubmitted(true)
     reset()
   }
 
@@ -78,79 +84,100 @@ export default function ContactForm() {
         />
       </svg>
 
-      {/* Form */}
+      {/* Form / Success Card */}
       <div className='relative mx-auto max-w-3xl overflow-hidden rounded-3xl border border-border/80 bg-background/95 p-8 shadow-2xl shadow-black/10 dark:shadow-white/10 backdrop-blur-3xl dark:border-white/10 dark:bg-white/[0.03] sm:p-12'>
-        <form
-          onSubmit={handleSubmit(processForm)}
-          className='lg:flex-auto'
-          noValidate
-        >
-          <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
-            {/* Name */}
-            <div>
-              <Input
-                id='name'
-                type='text'
-                placeholder='Name'
-                autoComplete='given-name'
-                {...register('name')}
-              />
-
-              {errors.name?.message && (
-                <p className='ml-1 mt-2 text-sm text-rose-400'>
-                  {errors.name.message}
-                </p>
-              )}
+        {isSubmitted ? (
+          <div className='flex flex-col items-center justify-center py-8 text-center'>
+            <div className='mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500 ring-1 ring-emerald-500/20'>
+              <CheckCircle2 className='h-8 w-8' />
             </div>
-
-            {/* Email */}
-            <div>
-              <Input
-                type='email'
-                id='email'
-                autoComplete='email'
-                placeholder='Email'
-                {...register('email')}
-              />
-
-              {errors.email?.message && (
-                <p className='ml-1 mt-2 text-sm text-rose-400'>
-                  {errors.email.message}
-                </p>
-              )}
-            </div>
-
-            {/* Message */}
-            <div className='sm:col-span-2'>
-              <Textarea
-                rows={4}
-                placeholder='Message'
-                {...register('message')}
-              />
-
-              {errors.message?.message && (
-                <p className='ml-1 mt-2 text-sm text-rose-400'>
-                  {errors.message.message}
-                </p>
-              )}
-            </div>
-          </div>
-          <div className='mt-6'>
+            <h3 className='text-2xl font-bold tracking-tight text-foreground sm:text-3xl'>
+              Thank you for reaching out!
+            </h3>
+            <p className='mt-3 max-w-md text-sm text-muted-foreground'>
+              Your message has been received. I will get back to you as soon as possible.
+            </p>
             <Button
-              type='submit'
-              disabled={isSubmitting}
-              className='w-full cursor-pointer disabled:opacity-50'
+              onClick={() => setIsSubmitted(false)}
+              className='mt-8 cursor-pointer'
+              variant='outline'
             >
-              {isSubmitting ? 'Submitting...' : 'Contact Me'}
+              Send another message
             </Button>
           </div>
-          <p className='mt-4 text-xs text-muted-foreground'>
-            By submitting this form, I agree to the{' '}
-            <Link href='/privacy' className='font-bold'>
-              privacy&nbsp;policy.
-            </Link>
-          </p>
-        </form>
+        ) : (
+          <form
+            onSubmit={handleSubmit(processForm)}
+            className='lg:flex-auto'
+            noValidate
+          >
+            <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
+              {/* Name */}
+              <div>
+                <Input
+                  id='name'
+                  type='text'
+                  placeholder='Name'
+                  autoComplete='given-name'
+                  {...register('name')}
+                />
+
+                {errors.name?.message && (
+                  <p className='ml-1 mt-2 text-sm text-rose-400'>
+                    {errors.name.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Email */}
+              <div>
+                <Input
+                  type='email'
+                  id='email'
+                  autoComplete='email'
+                  placeholder='Email'
+                  {...register('email')}
+                />
+
+                {errors.email?.message && (
+                  <p className='ml-1 mt-2 text-sm text-rose-400'>
+                    {errors.email.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Message */}
+              <div className='sm:col-span-2'>
+                <Textarea
+                  rows={4}
+                  placeholder='Message'
+                  {...register('message')}
+                />
+
+                {errors.message?.message && (
+                  <p className='ml-1 mt-2 text-sm text-rose-400'>
+                    {errors.message.message}
+                  </p>
+                )}
+              </div>
+            </div>
+            <div className='mt-6'>
+              <Button
+                type='submit'
+                disabled={isSubmitting}
+                className='w-full cursor-pointer disabled:opacity-50'
+              >
+                {isSubmitting ? 'Submitting...' : 'Contact Me'}
+              </Button>
+            </div>
+            <p className='mt-4 text-xs text-muted-foreground'>
+              By submitting this form, I agree to the{' '}
+              <Link href='/privacy' className='font-bold'>
+                privacy&nbsp;policy.
+              </Link>
+            </p>
+          </form>
+        )}
       </div>
     </section>
   )
