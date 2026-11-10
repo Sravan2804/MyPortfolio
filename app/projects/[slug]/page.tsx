@@ -7,11 +7,16 @@ import { ArrowLeft } from 'lucide-react'
 import { getProjectBySlug, getProjects } from '@/lib/projects'
 import { notFound } from 'next/navigation'
 
-export async function generateStaticParams() {
-  const projects = await getProjects()
-  const slugs = projects.map(project => ({ slug: project.slug }))
+// Allow on-demand rendering for GitHub repo slugs not pre-built at build time
+export const dynamicParams = true
 
-  return slugs
+export async function generateStaticParams() {
+  // Only pre-render local MDX files at build time.
+  // GitHub repo pages render on first request (no MDX compilation at build time).
+  const projects = await getProjects()
+  return projects
+    .filter(p => !p.isMarkdown)
+    .map(p => ({ slug: p.slug }))
 }
 
 export default async function Project({

@@ -19,6 +19,7 @@ export type ProjectMetadata = {
   author?: string
   publishedAt?: string
   slug: string
+  isMarkdown?: boolean
 }
 
 interface GitHubRepo {
@@ -99,6 +100,7 @@ export async function getProjects(limit?: number): Promise<ProjectMetadata[]> {
           author: 'Sravan',
           publishedAt: repo.created_at.slice(0, 10),
           slug: repo.name.toLowerCase(),
+          isMarkdown: true,
         }))
     }
   } catch (error) {
