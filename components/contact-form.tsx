@@ -91,19 +91,26 @@ export default function ContactForm() {
       {/* Form / Success Card */}
       <div className='relative mx-auto max-w-3xl overflow-hidden rounded-3xl border border-border/80 bg-background/95 p-8 shadow-2xl shadow-black/10 dark:shadow-white/10 backdrop-blur-3xl dark:border-white/10 dark:bg-white/[0.03] sm:p-12'>
         {isSubmitted ? (
-          <div className='flex flex-col items-center justify-center py-8 text-center'>
-            <div className='mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500 ring-1 ring-emerald-500/20'>
-              <CheckCircle2 className='h-8 w-8' />
+          <div className='flex flex-col items-center justify-center py-10 text-center animate-in fade-in zoom-in-95 duration-500'>
+            <div className='relative mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10 text-primary border border-primary/20 shadow-lg shadow-primary/10'>
+              <div className='absolute -inset-1 rounded-full bg-primary/20 blur-md -z-10' />
+              <CheckCircle2 className='h-10 w-10 text-primary' />
             </div>
-            <h3 className='text-2xl font-bold tracking-tight text-foreground sm:text-3xl'>
-              Thank you for reaching out!
+
+            <h3 className='font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl'>
+              Message <span className='text-primary'>Sent</span>
             </h3>
-            <p className='mt-3 max-w-md text-sm text-muted-foreground'>
-              Your message has been received. I will get back to you as soon as possible.
+
+            <p className='mt-4 max-w-md text-base text-muted-foreground leading-relaxed'>
+              Thank you for reaching out! Your note is on its way and I&apos;ll get back to you as soon as possible.
             </p>
+
             <Button
-              onClick={() => setIsSubmitted(false)}
-              className='mt-8 cursor-pointer'
+              onClick={() => {
+                setIsSubmitted(false)
+                setErrorMessage(null)
+              }}
+              className='mt-8 cursor-pointer rounded-full px-6'
               variant='outline'
             >
               Send another message
