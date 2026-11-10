@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { z } from 'zod'
 import Link from 'next/link'
 import { toast } from 'sonner'
-import { CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, AlertCircle } from 'lucide-react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ContactFormSchema } from '@/lib/schemas'
@@ -17,6 +17,7 @@ type Inputs = z.infer<typeof ContactFormSchema>
 
 export default function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const {
     register,
@@ -34,11 +35,14 @@ export default function ContactForm() {
   })
 
   const processForm: SubmitHandler<Inputs> = async data => {
+    setErrorMessage(null)
     const result = await sendEmail(data)
 
     if (result?.error) {
+      const msg = typeof result.error === 'string' ? result.error : 'An error occurred while sending your message. Please try again.'
       console.error('Submission error:', result.error)
-      toast.error(typeof result.error === 'string' ? result.error : 'An error occurred! Please try again.')
+      setErrorMessage(msg)
+      toast.error(msg)
       return
     }
 
@@ -111,6 +115,16 @@ export default function ContactForm() {
             className='lg:flex-auto'
             noValidate
           >
+            {errorMessage && (
+              <div className='mb-6 flex items-start gap-3 rounded-xl border border-rose-500/30 bg-rose-500/10 p-4 text-sm text-rose-300 dark:bg-rose-950/40'>
+                <AlertCircle className='h-5 w-5 shrink-0 text-rose-400' />
+                <div className='flex-1'>
+                  <p className='font-semibold text-rose-200'>Failed to send message</p>
+                  <p className='mt-1 text-xs opacity-90'>{errorMessage}</p>
+                </div>
+              </div>
+            )}
+
             <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
               {/* Name */}
               <div>
