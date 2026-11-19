@@ -1,17 +1,23 @@
 import ContactForm from "@/components/contact-form";
 
 export default function ContactPage() {
-    return (
-        <section className="pb-24 pt-40">
-            <div className="container max-w-4xl">
-                <h1 className="title mb-6 text-center text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl">
-                    Let&apos;s <span className="text-primary">Connect</span>
-                </h1>
-                <p className="mx-auto mb-16 max-w-2xl text-center text-lg text-muted-foreground">
-                    Whether you have a question, a project in mind, or just want to say hi, I&apos;d love to hear from you. Drop a message below!
-                </p>
-                <ContactForm />
-            </div>
-        </section>
-    )
+  return (
+    <div className="pt-32 pb-24">
+      <div className="container max-w-3xl px-4 sm:px-6">
+        <header className="mb-12">
+          <p className="text-xs font-semibold tracking-widest uppercase text-primary mb-2">
+            Inquiries &amp; Collaboration
+          </p>
+          <h1 className="font-serif text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground">
+            Get in Touch
+          </h1>
+          <p className="mt-4 text-base text-muted-foreground leading-relaxed max-w-xl">
+            Whether you are discussing AI engineering roles, collaborative research, or specialized LLM systems, feel free to reach out.
+          </p>
+        </header>
+
+        <ContactForm />
+      </div>
+    </div>
+  )
 }
