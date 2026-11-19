@@ -51,13 +51,13 @@ export default function CommandMenu() {
       >
         <BorderGlow
           edgeSensitivity={30}
-          glowColor="345 80 65"
+          glowColor="22 90 52"
           backgroundColor="var(--card)"
           borderRadius={20}
           glowRadius={36}
           glowIntensity={0.9}
           coneSpread={24}
-          colors={['#ff2a85', '#e01e72', '#b5179e']}
+          colors={['#e11d48', '#ffffff', '#e11d48']}
           className="w-full shadow-2xl"
         >
           <Command className="flex h-full w-full flex-col overflow-hidden bg-card/95">

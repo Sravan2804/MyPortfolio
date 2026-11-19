@@ -5,7 +5,7 @@ export default async function ProjectsPage() {
   const projects = await getProjects()
 
   return (
-    <div className='pt-32 pb-24 w-full'>
+    <div className='pt-24 sm:pt-32 pb-24 w-full'>
       <div className='w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16'>
         <header className='mb-10 rounded-xl border border-border/50 bg-card/65 dark:bg-card/55 backdrop-blur-[6px] p-6 sm:p-7 shadow-md'>
           <p className='font-mono text-[10px] font-semibold tracking-[0.25em] uppercase text-primary mb-2'>

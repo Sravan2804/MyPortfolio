@@ -7,13 +7,13 @@ export default function NotFound() {
       <div className='w-full max-w-lg'>
         <BorderGlow
           edgeSensitivity={30}
-          glowColor="348 85 58"
+          glowColor="22 90 52"
           backgroundColor="var(--card)"
           borderRadius={24}
           glowRadius={36}
           glowIntensity={0.9}
           coneSpread={24}
-          colors={['#e11d48', '#8b5cf6', '#6366f1']}
+          colors={['#e11d48', '#ffffff', '#e11d48']}
           className="w-full text-center p-8 sm:p-12 shadow-2xl"
         >
           <p className='font-mono text-xs font-semibold tracking-widest uppercase text-primary mb-3'>
@@ -24,20 +24,20 @@ export default function NotFound() {
             Page Not Found
           </h1>
 
-          <p className='text-sm text-muted-foreground leading-relaxed mb-8 max-w-sm mx-auto'>
+          <p className='text-sm sm:text-base text-foreground/90 dark:text-zinc-200 leading-relaxed mb-8 max-w-sm mx-auto font-sans'>
             The resource or endpoint you requested could not be resolved on this system.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href='/'
-              className='inline-flex h-11 items-center justify-center rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-sm hover:opacity-95 transition-all'
+              className='inline-flex h-11 items-center justify-center rounded-md bg-primary px-7 font-mono text-xs font-semibold uppercase tracking-wider text-primary-foreground shadow-[0_0_20px_rgba(225,29,72,0.35)] hover:shadow-[0_0_30px_rgba(225,29,72,0.6)] transition-all duration-200 hover:opacity-95 active:scale-[0.98]'
             >
               Return Home
             </Link>
             <Link
               href='/projects'
-              className='inline-flex h-11 items-center justify-center rounded-lg border border-border/80 bg-card/60 px-6 text-sm font-medium text-foreground hover:border-primary/50 hover:text-primary transition-all'
+              className='inline-flex h-11 items-center justify-center rounded-md border border-border/80 bg-card/60 backdrop-blur-sm px-7 font-mono text-xs font-medium uppercase tracking-wider text-foreground transition-all duration-200 hover:border-primary/60 hover:bg-card hover:text-primary active:scale-[0.98]'
             >
               View Projects
             </Link>

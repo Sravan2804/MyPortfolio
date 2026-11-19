@@ -23,10 +23,10 @@ const skills = [
 
 export default function TechMarquee() {
   return (
-    <div className="relative w-full py-6 border-y border-border/40 bg-card/25">
+    <div className="relative w-full py-6 border-y border-border/50 bg-card/60 backdrop-blur-sm shadow-inner">
       {/* Edge fade gradients for seamless entry/exit */}
-      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-background to-transparent" />
-      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-background to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-background via-background/60 to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-background via-background/60 to-transparent" />
 
       <InfiniteSlider speedOnHover={20} gap={24} duration={32}>
         {skills.map((skill) => (

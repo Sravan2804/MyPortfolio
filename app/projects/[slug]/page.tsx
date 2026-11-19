@@ -34,7 +34,7 @@ export default async function Project({
   const { title, image, author, publishedAt } = metadata
 
   return (
-    <article className='pt-32 pb-24 w-full'>
+    <article className='pt-24 sm:pt-32 pb-24 w-full'>
       <div className='w-full max-w-[1200px] mx-auto px-6 sm:px-10 lg:px-16'>
         <div className='mb-8'>
           <Link

@@ -60,7 +60,7 @@ export default function Projects({
           <input
             type='text'
             placeholder='Search projects by title, stack, or topic...'
-            className='block w-full rounded-md border border-border/80 bg-card/75 py-2.5 pl-11 pr-10 font-mono text-xs text-foreground placeholder:text-muted-foreground/50 focus:border-primary/80 focus:bg-card focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all shadow-inner'
+            className='block w-full rounded-md border border-border/80 bg-card/85 backdrop-blur-md py-2.5 pl-11 pr-10 font-mono text-xs text-foreground placeholder:text-muted-foreground/50 focus:border-primary/80 focus:bg-card focus:outline-none focus:ring-1 focus:ring-primary/40 transition-all shadow-sm'
             value={query}
             onChange={e => setQuery(e.target.value)}
           />

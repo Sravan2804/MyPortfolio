@@ -31,9 +31,9 @@ export default function Header() {
         </Link>
 
         {/* Nav actions */}
-        <div className='flex items-center gap-3 sm:gap-6'>
+        <div className='flex items-center gap-2.5 sm:gap-6'>
           {/* Main Navigation Links */}
-          <ul className='flex items-center gap-4 sm:gap-6 text-sm font-medium'>
+          <ul className='flex items-center gap-3 sm:gap-6 text-xs sm:text-sm font-medium'>
             {navLinks.map((link) => {
               const isActive = link.href === '/' ? pathname === '/' : pathname === link.href || pathname.startsWith(link.href)
               return (
@@ -56,7 +56,7 @@ export default function Header() {
             })}
           </ul>
 
-          {/* Quick Command Palette Button */}
+          {/* Quick Command Palette Button (Desktop) */}
           <button
             type='button'
             onClick={handleOpenSearch}
@@ -70,10 +70,20 @@ export default function Header() {
             </kbd>
           </button>
 
+          {/* Quick Command Palette Button (Mobile) */}
+          <button
+            type='button'
+            onClick={handleOpenSearch}
+            className='sm:hidden flex h-8 w-8 items-center justify-center rounded-md border border-border/70 bg-card/60 text-muted-foreground hover:text-primary transition-colors cursor-pointer'
+            aria-label='Search command palette'
+          >
+            <Search className='h-3.5 w-3.5' />
+          </button>
+
           {/* Cinematic Theme Switcher */}
-          <div className='border-l border-border/60 pl-3 sm:pl-4 flex items-center'>
-            <div className='relative flex items-center justify-center w-[60px] h-[36px]'>
-              <CinematicThemeSwitcher className='origin-center scale-[0.55]' />
+          <div className='border-l border-border/60 pl-2.5 sm:pl-4 flex items-center'>
+            <div className='relative flex items-center justify-center w-[58px] sm:w-[60px] h-[36px]'>
+              <CinematicThemeSwitcher className='origin-center scale-[0.52] sm:scale-[0.55]' />
             </div>
           </div>
         </div>

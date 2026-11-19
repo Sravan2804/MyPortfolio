@@ -5,7 +5,7 @@ import { GraduationCap, Brain, Compass } from "lucide-react"
 
 export default function AboutPage() {
   return (
-    <div className="pt-28 pb-24 w-full">
+    <div className="pt-24 sm:pt-28 pb-24 w-full">
       {/* Intro Section */}
       <section className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 mb-20">
         <header className="mb-8 rounded-xl border border-border/50 bg-card/65 dark:bg-card/55 backdrop-blur-[6px] p-6 sm:p-8 shadow-md">

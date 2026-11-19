@@ -56,14 +56,14 @@ export default function ContactForm() {
     <div className='w-full'>
       <BorderGlow
         edgeSensitivity={28}
-        glowColor="348 85 58"
+        glowColor="22 90 52"
         backgroundColor="var(--card)"
         borderRadius={22}
         glowRadius={36}
         glowIntensity={0.85}
         coneSpread={24}
-        colors={['#e11d48', '#8b5cf6', '#6366f1']}
-        className="w-full"
+        colors={['#e11d48', '#ffffff', '#e11d48']}
+        className="w-full shadow-lg"
       >
         <div className='p-8 sm:p-12'>
           {isSubmitted ? (
@@ -110,7 +110,7 @@ export default function ContactForm() {
               <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
                 {/* Name */}
                 <div>
-                  <label htmlFor='name' className='block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2'>
+                  <label htmlFor='name' className='block text-xs font-mono font-semibold uppercase tracking-wider text-foreground/80 dark:text-zinc-300 mb-2'>
                     Your Name
                   </label>
                   <Input
@@ -118,7 +118,7 @@ export default function ContactForm() {
                     type='text'
                     placeholder='Ada Lovelace'
                     autoComplete='given-name'
-                    className='rounded-lg border-border bg-card/50 focus:border-primary/60 focus:ring-primary/20'
+                    className='rounded-md border-border/80 bg-background/80 py-2.5 px-3.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-primary/80 focus:ring-1 focus:ring-primary/40'
                     {...register('name')}
                   />
                   {errors.name?.message && (
@@ -130,7 +130,7 @@ export default function ContactForm() {
 
                 {/* Email */}
                 <div>
-                  <label htmlFor='email' className='block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2'>
+                  <label htmlFor='email' className='block text-xs font-mono font-semibold uppercase tracking-wider text-foreground/80 dark:text-zinc-300 mb-2'>
                     Email Address
                   </label>
                   <Input
@@ -138,7 +138,7 @@ export default function ContactForm() {
                     id='email'
                     autoComplete='email'
                     placeholder='ada@example.com'
-                    className='rounded-lg border-border bg-card/50 focus:border-primary/60 focus:ring-primary/20'
+                    className='rounded-md border-border/80 bg-background/80 py-2.5 px-3.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-primary/80 focus:ring-1 focus:ring-primary/40'
                     {...register('email')}
                   />
                   {errors.email?.message && (
@@ -150,14 +150,14 @@ export default function ContactForm() {
 
                 {/* Message */}
                 <div className='sm:col-span-2'>
-                  <label htmlFor='message' className='block text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2'>
+                  <label htmlFor='message' className='block text-xs font-mono font-semibold uppercase tracking-wider text-foreground/80 dark:text-zinc-300 mb-2'>
                     Message
                   </label>
                   <Textarea
                     id='message'
                     rows={5}
                     placeholder='Tell me about your project, idea, or role...'
-                    className='rounded-lg border-border bg-card/50 focus:border-primary/60 focus:ring-primary/20'
+                    className='rounded-md border-border/80 bg-background/80 p-3.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-primary/80 focus:ring-1 focus:ring-primary/40'
                     {...register('message')}
                   />
                   {errors.message?.message && (
@@ -172,7 +172,7 @@ export default function ContactForm() {
                 <Button
                   type='submit'
                   disabled={isSubmitting}
-                  className='w-full h-11 rounded-lg bg-primary text-primary-foreground font-semibold text-sm transition-all hover:opacity-90 disabled:opacity-50 cursor-pointer'
+                  className='w-full h-11 inline-flex items-center justify-center rounded-md bg-primary px-7 font-mono text-xs font-semibold uppercase tracking-wider text-primary-foreground shadow-[0_0_20px_rgba(225,29,72,0.35)] hover:shadow-[0_0_30px_rgba(225,29,72,0.6)] transition-all duration-200 hover:opacity-95 active:scale-[0.98] disabled:opacity-50 cursor-pointer'
                 >
                   {isSubmitting ? 'Sending Message...' : 'Send Message'}
                 </Button>

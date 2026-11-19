@@ -69,16 +69,16 @@ export default function ExperienceTimeline() {
                     index % 2 === 0 ? 'sm:items-start sm:text-left' : 'sm:items-end sm:text-right'
                   }`}
                 >
-                  <span className="text-sm font-bold text-primary mb-2 tracking-wider uppercase">
+                  <span className="text-xs font-mono font-bold text-primary mb-2 tracking-wider uppercase">
                     {item.date}
                   </span>
-                  <h3 className="text-2xl font-bold text-foreground mb-1 font-serif">
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-1 font-serif">
                     {item.title}
                   </h3>
-                  <h4 className="text-base font-medium text-muted-foreground mb-3">
+                  <h4 className="text-sm sm:text-base font-medium text-foreground/80 dark:text-zinc-300 mb-3">
                     {item.company}
                   </h4>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-foreground/90 dark:text-zinc-200 leading-relaxed font-sans">
                     {item.description}
                   </p>
                 </div>
