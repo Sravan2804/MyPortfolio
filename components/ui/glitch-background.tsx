@@ -51,15 +51,15 @@ export default function GlitchBackground() {
           blindCount={14}
           blindMinWidth={60}
           spotlightRadius={0.65}
-          shine={0.6}
-          relief={0.85}
-          glow={0.35}
+          shine={0.3}
+          relief={0.45}
+          glow={0.25}
           sway={0.35}
           hoverTilt={0.6}
           clickEffect="ripple"
-          noise={0.35}
+          noise={0.25}
           spotlightSoftness={1.3}
-          lightColor="#ffe4c4"
+          lightColor="#94a3b8"
           className="w-full h-full"
         />
       )}

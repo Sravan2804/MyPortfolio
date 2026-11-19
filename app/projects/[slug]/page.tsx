@@ -46,7 +46,7 @@ export default async function Project({
           </Link>
         </div>
 
-        <header className='mb-8 rounded-xl border border-border/40 bg-card/30 dark:bg-card/25 backdrop-blur-[2px] p-6 sm:p-8 shadow-md'>
+        <header className='mb-8 rounded-xl border border-border/50 bg-card/65 dark:bg-card/55 backdrop-blur-[6px] p-6 sm:p-8 shadow-md'>
           <div className='flex items-center gap-3 text-xs font-mono font-medium text-primary mb-3 uppercase tracking-wider'>
             <span>{author || 'Rama Sravan'}</span>
             <span className='text-muted-foreground/40'>•</span>
@@ -84,7 +84,7 @@ export default async function Project({
           </div>
         )}
 
-        <main className='rounded-xl border border-border/40 bg-card/30 dark:bg-card/25 backdrop-blur-[2px] p-8 sm:p-12 shadow-md prose prose-zinc dark:prose-invert max-w-none prose-headings:font-serif prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-pre:border prose-pre:border-border/60 prose-pre:bg-card/60 prose-blockquote:border-l-primary prose-blockquote:text-foreground'>
+        <main className='rounded-xl border border-border/50 bg-card/65 dark:bg-card/55 backdrop-blur-[6px] p-8 sm:p-12 shadow-md prose prose-zinc dark:prose-invert max-w-none prose-headings:font-serif prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-pre:border prose-pre:border-border/60 prose-pre:bg-card/60 prose-blockquote:border-l-primary prose-blockquote:text-foreground'>
           <MDXContent
             source={content}
             options={isMarkdown ? { mdxOptions: { format: 'md' } } : undefined}

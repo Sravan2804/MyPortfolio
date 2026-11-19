@@ -34,6 +34,15 @@ export function InfiniteSlider({
 
   const isVertical = direction === 'vertical';
 
+  const offsetRef = useRef(0);
+  const isHoveredRef = useRef(false);
+  const currentSpeedRef = useRef<number | null>(null);
+  const propsRef = useRef({ duration, durationOnHover, speedOnHover, reverse });
+
+  useEffect(() => {
+    propsRef.current = { duration, durationOnHover, speedOnHover, reverse };
+  }, [duration, durationOnHover, speedOnHover, reverse]);
+
   // Measure container and content size with ResizeObserver
   useEffect(() => {
     const container = containerRef.current;
@@ -67,44 +76,57 @@ export function InfiniteSlider({
 
     let rafId: number;
     let lastTime = performance.now();
-    let currentOffset = 0;
 
     const totalDistance = contentSize + gap;
+
+    // Normalize offset within the repeating loop distance
+    if (totalDistance > 0 && Math.abs(offsetRef.current) >= totalDistance) {
+      offsetRef.current = offsetRef.current % totalDistance;
+    }
 
     const tick = (now: number) => {
       const dt = Math.min((now - lastTime) / 1000, 0.1);
       lastTime = now;
 
-      // Calculate speed in pixels per second
-      const baseSpeed = totalDistance / Math.max(duration, 0.1);
-      let activeSpeed = baseSpeed;
+      const { duration: dur, durationOnHover: durHover, speedOnHover: spdHover, reverse: rev } = propsRef.current;
 
-      if (isHovered) {
-        if (speedOnHover !== undefined) {
-          activeSpeed = speedOnHover;
-        } else if (durationOnHover !== undefined) {
-          activeSpeed = totalDistance / Math.max(durationOnHover, 0.1);
+      // Calculate speed in pixels per second
+      const baseSpeed = totalDistance / Math.max(dur, 0.1);
+      let targetSpeed = baseSpeed;
+
+      if (isHoveredRef.current) {
+        if (spdHover !== undefined) {
+          targetSpeed = spdHover;
+        } else if (durHover !== undefined) {
+          targetSpeed = totalDistance / Math.max(durHover, 0.1);
         }
       }
 
-      const step = activeSpeed * dt;
+      // Smoothly transition speed on hover to prevent abrupt velocity jumps
+      if (currentSpeedRef.current === null) {
+        currentSpeedRef.current = targetSpeed;
+      } else {
+        currentSpeedRef.current += (targetSpeed - currentSpeedRef.current) * Math.min(1, dt * 10);
+      }
 
-      if (reverse) {
-        currentOffset += step;
-        if (currentOffset >= 0) {
-          currentOffset -= totalDistance;
+      const step = currentSpeedRef.current * dt;
+
+      if (rev) {
+        offsetRef.current += step;
+        if (offsetRef.current >= 0) {
+          offsetRef.current -= totalDistance;
         }
       } else {
-        currentOffset -= step;
-        if (currentOffset <= -totalDistance) {
-          currentOffset += totalDistance;
+        offsetRef.current -= step;
+        if (offsetRef.current <= -totalDistance) {
+          offsetRef.current += totalDistance;
         }
       }
 
       if (isVertical) {
-        track.style.transform = `translate3d(0, ${currentOffset}px, 0)`;
+        track.style.transform = `translate3d(0, ${offsetRef.current}px, 0)`;
       } else {
-        track.style.transform = `translate3d(${currentOffset}px, 0, 0)`;
+        track.style.transform = `translate3d(${offsetRef.current}px, 0, 0)`;
       }
 
       rafId = requestAnimationFrame(tick);
@@ -113,7 +135,7 @@ export function InfiniteSlider({
     rafId = requestAnimationFrame(tick);
 
     return () => cancelAnimationFrame(rafId);
-  }, [contentSize, gap, duration, durationOnHover, speedOnHover, isHovered, isVertical, reverse]);
+  }, [contentSize, gap, isVertical]);
 
   // Determine how many repetitions are needed to fully span the viewport without gaps
   const repeatCount = contentSize > 0 && containerSize > 0
@@ -121,12 +143,14 @@ export function InfiniteSlider({
     : 3;
 
   const handleMouseEnter = useCallback(() => {
+    isHoveredRef.current = true;
     if (speedOnHover !== undefined || durationOnHover !== undefined) {
       setIsHovered(true);
     }
   }, [speedOnHover, durationOnHover]);
 
   const handleMouseLeave = useCallback(() => {
+    isHoveredRef.current = false;
     if (speedOnHover !== undefined || durationOnHover !== undefined) {
       setIsHovered(false);
     }

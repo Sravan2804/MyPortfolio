@@ -9,25 +9,25 @@ import TechText from '@/components/ui/TechText'
 export default function Intro() {
   return (
     <section className="relative w-full pt-4 pb-10">
-      {/* Neo-Noir Subtle Glass Hero Frame: Gentle blur to keep background design crisp & visible */}
+      {/* Neo-Noir Glass Hero Frame: Balances backdrop transparency with full text contrast & clarity */}
       <div
-        className="pointer-events-none absolute -inset-x-4 sm:-inset-x-8 -inset-y-4 sm:-inset-y-6 -z-10 rounded-2xl bg-card/30 dark:bg-card/25 backdrop-blur-[2px] border border-border/30 shadow-[0_12px_40px_rgba(0,0,0,0.25)] dark:shadow-[0_16px_50px_rgba(0,0,0,0.5)]"
+        className="pointer-events-none absolute -inset-x-4 sm:-inset-x-8 -inset-y-4 sm:-inset-y-6 -z-10 rounded-2xl bg-card/65 dark:bg-card/55 backdrop-blur-[6px] border border-border/50 shadow-[0_16px_48px_rgba(0,0,0,0.25)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.55)]"
         aria-hidden="true"
       />
 
-      {/* Salutation Lead-in: Filmic Noir Title Overlapping the Hero Name */}
-      <div className="relative z-20 pointer-events-none pl-1 sm:pl-2 pt-2 -mb-2 sm:-mb-4">
-        <div className="flex flex-col gap-1.5">
-          <div className="inline-flex items-center gap-2.5">
-            <span className="relative flex h-2.5 w-2.5 items-center justify-center shrink-0">
+      {/* Salutation Lead-in: Sedgwick Ave Display Overlapping the Hero Name */}
+      <div className="relative z-20 pointer-events-none pl-1 sm:pl-2 pt-1 -mb-6 sm:-mb-8 md:-mb-10 lg:-mb-12">
+        <div className="flex flex-col gap-1">
+          <div className="inline-flex items-center gap-2">
+            <span className="relative flex h-2 w-2 items-center justify-center shrink-0">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/50 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary shadow-[0_0_10px] shadow-primary" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_8px] shadow-primary" />
             </span>
-            <span className="font-mono text-[10px] sm:text-[11px] font-semibold tracking-[0.28em] uppercase text-primary/90">
+            <span className="font-mono text-[9px] sm:text-[10px] font-semibold tracking-[0.28em] uppercase text-primary/90">
               IDENTITY // 01
             </span>
           </div>
-          <h2 className="font-serif italic text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-light tracking-tight text-primary leading-none select-none drop-shadow-[0_0_20px_rgba(225,29,72,0.65)] pl-0.5">
+          <h2 className="sedgwick-ave-display-regular text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-normal tracking-wide text-primary leading-none select-none -rotate-2 transform origin-bottom-left drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] dark:drop-shadow-[0_4px_24px_rgba(225,29,72,0.6)] pl-0.5">
             Hey, I&apos;m
           </h2>
         </div>
@@ -70,23 +70,21 @@ export default function Intro() {
         {/* Left Column: Role Badges, Bio, CTAs */}
         <div className="flex-1 max-w-3xl">
           {/* Role & Specialization Subtitle */}
-          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs sm:text-sm">
-            <span className="font-semibold tracking-widest uppercase text-primary">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 text-xs sm:text-sm">
+            <span className="inline-flex items-center rounded-md bg-primary/10 border border-primary/30 px-3 py-1 font-mono text-xs font-semibold tracking-wider uppercase text-primary shadow-sm">
               AI Engineer
             </span>
-            <span className="text-muted-foreground/40">•</span>
-            <span className="font-medium tracking-wider text-muted-foreground">
+            <span className="inline-flex items-center rounded-md bg-card/90 dark:bg-card/80 border border-border/70 px-3 py-1 font-mono text-xs font-medium tracking-wide text-foreground/90 dark:text-zinc-200 shadow-sm">
               Limerick, Ireland
             </span>
-            <span className="text-muted-foreground/40">•</span>
-            <span className="font-medium tracking-wider text-muted-foreground">
+            <span className="inline-flex items-center rounded-md bg-card/90 dark:bg-card/80 border border-border/70 px-3 py-1 font-mono text-xs font-medium tracking-wide text-foreground/90 dark:text-zinc-200 shadow-sm">
               Computer Vision &amp; Agentic AI
             </span>
           </div>
 
-          {/* Bio paragraph */}
-          <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl font-serif">
-            I design and deploy production-grade <span className="text-foreground font-semibold">intelligent systems</span>, specialising in autonomous agentic workflows, LLM orchestration, and high-performance computer vision pipelines.
+          {/* Bio paragraph: High-contrast typography with dark text-shadow to prevent washout */}
+          <p className="mt-5 text-base sm:text-lg text-foreground/95 dark:text-zinc-100 leading-relaxed max-w-2xl font-serif drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+            I design and deploy production-grade <span className="text-foreground dark:text-white font-semibold underline decoration-primary/50 underline-offset-4">intelligent systems</span>, specialising in autonomous agentic workflows, LLM orchestration, and high-performance computer vision pipelines.
           </p>
 
           {/* Primary & Secondary CTAs */}

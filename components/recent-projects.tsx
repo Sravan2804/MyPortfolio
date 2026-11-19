@@ -9,7 +9,7 @@ export default async function RecentProjects() {
   return (
     <section className='pb-24 pt-8 relative z-10'>
       <div>
-        <div className='mb-8 rounded-xl border border-border/40 bg-card/30 dark:bg-card/25 backdrop-blur-[2px] p-6 sm:p-7 shadow-md'>
+        <div className='mb-8 rounded-xl border border-border/50 bg-card/65 dark:bg-card/55 backdrop-blur-[6px] p-6 sm:p-7 shadow-md'>
           <p className='font-mono text-[10px] font-semibold tracking-[0.25em] uppercase text-primary mb-2'>
             PORTFOLIO // SYSTEMS
           </p>
@@ -24,7 +24,7 @@ export default async function RecentProjects() {
               View all ({allProjects.length}) &rarr;
             </Link>
           </div>
-          <p className='mt-2 text-sm text-muted-foreground max-w-xl leading-relaxed'>
+          <p className='mt-2 text-sm text-foreground/90 dark:text-zinc-200 max-w-xl leading-relaxed'>
             Selected production-grade architectures spanning agentic research orchestrators, vision telemetry, and computer vision pipelines.
           </p>
         </div>

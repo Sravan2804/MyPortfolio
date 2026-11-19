@@ -8,7 +8,7 @@ export default function AboutPage() {
     <div className="pt-28 pb-24 w-full">
       {/* Intro Section */}
       <section className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 mb-20">
-        <header className="mb-8 rounded-xl border border-border/40 bg-card/30 dark:bg-card/25 backdrop-blur-[2px] p-6 sm:p-8 shadow-md">
+        <header className="mb-8 rounded-xl border border-border/50 bg-card/65 dark:bg-card/55 backdrop-blur-[6px] p-6 sm:p-8 shadow-md">
           <p className="font-mono text-[10px] font-semibold tracking-[0.25em] uppercase text-primary mb-2">
             BACKGROUND // EXPERTISE
           </p>
@@ -19,7 +19,7 @@ export default function AboutPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
           {/* Left Column: Narrative Card */}
-          <div className="lg:col-span-7 rounded-xl border border-border/40 bg-card/30 dark:bg-card/25 backdrop-blur-[2px] p-7 sm:p-9 space-y-5 text-base sm:text-lg text-muted-foreground leading-relaxed font-sans shadow-md flex flex-col justify-center">
+          <div className="lg:col-span-7 rounded-xl border border-border/50 bg-card/65 dark:bg-card/55 backdrop-blur-[6px] p-7 sm:p-9 space-y-5 text-base sm:text-lg text-foreground/90 dark:text-zinc-200 leading-relaxed font-sans shadow-md flex flex-col justify-center">
             <p>
               I am an AI and Software Engineer dedicated to engineering intelligent, high-throughput systems that translate state-of-the-art machine learning research into tangible, production-grade applications.
             </p>

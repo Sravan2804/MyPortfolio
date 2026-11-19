@@ -6,14 +6,14 @@ export default function ContactPage() {
   return (
     <div className="pt-28 pb-24 w-full">
       <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16">
-        <header className="mb-10 rounded-xl border border-border/40 bg-card/30 dark:bg-card/25 backdrop-blur-[2px] p-6 sm:p-7 shadow-md">
+        <header className="mb-10 rounded-xl border border-border/50 bg-card/65 dark:bg-card/55 backdrop-blur-[6px] p-6 sm:p-7 shadow-md">
           <p className="font-mono text-[10px] font-semibold tracking-[0.25em] uppercase text-primary mb-2">
             CHANNELS // INQUIRIES
           </p>
           <h1 className="font-serif text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground">
             Get in Touch
           </h1>
-          <p className="mt-3 text-base sm:text-lg text-muted-foreground leading-relaxed max-w-2xl font-serif">
+          <p className="mt-3 text-base sm:text-lg text-foreground/90 dark:text-zinc-200 leading-relaxed max-w-2xl font-serif">
             Whether you are discussing AI engineering roles, collaborative research, or high-throughput computer vision pipelines, feel free to reach out.
           </p>
         </header>
