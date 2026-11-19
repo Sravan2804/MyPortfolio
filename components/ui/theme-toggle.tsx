@@ -1,22 +1,12 @@
 'use client'
-import React, { useEffect, useState } from 'react'
-import { useTheme } from "next-themes"
-import { Button } from "./button"
-import { Moon, Sun } from "lucide-react"
 
-export default function ThemeToggle() {
-    const {resolvedTheme, setTheme } = useTheme()
-    const [mounted, setMounted] = useState(false)
-    useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setMounted(true)
-    }, [])
-    if (!mounted) {
-        return null
-    }
-    return (
-        <Button variant="ghost" size="icon" onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}>
-            {resolvedTheme === "dark" ? <Moon /> : <Sun />}
-        </Button>
-    )
+import React from 'react'
+import CinematicThemeSwitcher from '@/components/ui/cinematic-theme-switcher'
+
+export default function ThemeToggle({ className = '' }: { className?: string }) {
+  return (
+    <div className={`relative flex items-center justify-center w-[60px] h-[36px] ${className}`.trim()}>
+      <CinematicThemeSwitcher className="origin-center scale-[0.55]" />
+    </div>
+  )
 }

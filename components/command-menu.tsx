@@ -23,8 +23,14 @@ export default function CommandMenu() {
       }
     }
 
+    const toggleMenu = () => setOpen(prev => !prev)
+
+    window.addEventListener('toggle-command-menu', toggleMenu)
     document.addEventListener('keydown', down)
-    return () => document.removeEventListener('keydown', down)
+    return () => {
+      window.removeEventListener('toggle-command-menu', toggleMenu)
+      document.removeEventListener('keydown', down)
+    }
   }, [])
 
   const runCommand = (command: () => void) => {
@@ -46,7 +52,7 @@ export default function CommandMenu() {
         <BorderGlow
           edgeSensitivity={30}
           glowColor="345 80 65"
-          backgroundColor="#120F17"
+          backgroundColor="var(--card)"
           borderRadius={20}
           glowRadius={36}
           glowIntensity={0.9}
@@ -54,7 +60,7 @@ export default function CommandMenu() {
           colors={['#ff2a85', '#e01e72', '#b5179e']}
           className="w-full shadow-2xl"
         >
-          <Command className="flex h-full w-full flex-col overflow-hidden bg-card/90">
+          <Command className="flex h-full w-full flex-col overflow-hidden bg-card/95">
             <Command.Input 
               placeholder="Type a command or search..." 
               className="w-full border-b border-border/50 bg-transparent px-6 py-4 text-base outline-none placeholder:text-muted-foreground focus:ring-0 text-foreground" 
@@ -107,6 +113,18 @@ export default function CommandMenu() {
                 </Command.Item>
               </Command.Group>
             </Command.List>
+
+            <div className="flex items-center justify-between border-t border-border/40 px-4 py-2.5 text-[11px] font-mono text-muted-foreground bg-muted/20">
+              <span className="flex items-center gap-1.5">
+                <kbd className="rounded bg-muted px-1.5 py-0.5 border border-border/70 text-[10px]">↑↓</kbd> navigate
+              </span>
+              <span className="flex items-center gap-1.5">
+                <kbd className="rounded bg-muted px-1.5 py-0.5 border border-border/70 text-[10px]">↵</kbd> select
+              </span>
+              <span className="flex items-center gap-1.5">
+                <kbd className="rounded bg-muted px-1.5 py-0.5 border border-border/70 text-[10px]">esc</kbd> close
+              </span>
+            </div>
           </Command>
         </BorderGlow>
       </div>

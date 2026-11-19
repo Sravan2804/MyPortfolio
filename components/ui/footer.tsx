@@ -53,11 +53,13 @@ const navigation = [
 export default function Footer() {
   return (
     <footer className='border-t border-border/40 py-10 mt-auto'>
-      <div className='container max-w-4xl px-4 sm:px-6'>
+      <div className='w-full max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16'>
         <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
-          <p className='text-xs text-muted-foreground'>
-            &copy; {new Date().getFullYear()} Rama Sravan Gunda. All rights reserved.
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-xs text-muted-foreground">
+            <p>&copy; {new Date().getFullYear()} Rama Sravan Gunda. All rights reserved.</p>
+            <span className="hidden sm:inline text-muted-foreground/40">•</span>
+            <p className="font-mono text-[11px] text-muted-foreground/80">Limerick, Ireland</p>
+          </div>
 
           <div className='flex items-center space-x-5'>
             {navigation.map(item => (
@@ -66,7 +68,7 @@ export default function Footer() {
                 href={item.href}
                 target='_blank'
                 rel='noreferrer noopener'
-                className='text-muted-foreground transition-colors hover:text-primary'
+                className='text-muted-foreground transition-colors hover:text-primary min-h-[36px] min-w-[36px] flex items-center justify-center'
               >
                 <span className='sr-only'>{item.name}</span>
                 <item.icon aria-hidden='true' className='h-4 w-4' />

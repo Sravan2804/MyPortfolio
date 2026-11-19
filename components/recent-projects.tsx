@@ -3,29 +3,40 @@ import { getProjects } from '@/lib/projects'
 import Projects from '@/components/projects'
 
 export default async function RecentProjects() {
-  const projects = await getProjects(2)
+  const allProjects = await getProjects()
+  const featuredProjects = allProjects.slice(0, 3)
 
   return (
-    <section className='pb-24 pt-12 relative z-10'>
+    <section className='pb-24 pt-8 relative z-10'>
       <div>
-        <div className='flex items-baseline justify-between mb-10'>
-          <h2 className='font-serif text-2xl font-bold tracking-tight text-foreground'>
-            Featured Projects
-          </h2>
-          <Link
-            href='/projects'
-            className='text-sm font-medium text-muted-foreground underline underline-offset-4 decoration-transparent hover:decoration-primary hover:text-primary transition-all duration-200'
-          >
-            View all
-          </Link>
+        <div className='mb-8 rounded-xl border border-border/40 bg-card/30 dark:bg-card/25 backdrop-blur-[2px] p-6 sm:p-7 shadow-md'>
+          <p className='font-mono text-[10px] font-semibold tracking-[0.25em] uppercase text-primary mb-2'>
+            PORTFOLIO // SYSTEMS
+          </p>
+          <div className='flex flex-col sm:flex-row sm:items-baseline justify-between gap-2'>
+            <h2 className='font-serif text-3xl font-bold tracking-tight text-foreground'>
+              Featured Projects
+            </h2>
+            <Link
+              href='/projects'
+              className='font-mono text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors'
+            >
+              View all ({allProjects.length}) &rarr;
+            </Link>
+          </div>
+          <p className='mt-2 text-sm text-muted-foreground max-w-xl leading-relaxed'>
+            Selected production-grade architectures spanning agentic research orchestrators, vision telemetry, and computer vision pipelines.
+          </p>
         </div>
-        <Projects projects={projects} />
-        <div className='mt-14 flex justify-start'>
+
+        <Projects projects={featuredProjects} />
+
+        <div className='mt-10 flex justify-start'>
           <Link
             href='/projects'
-            className='inline-flex h-11 items-center justify-center rounded-lg bg-primary px-8 text-sm font-semibold text-primary-foreground transition-all duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2'
+            className='inline-flex h-11 items-center justify-center rounded-md bg-primary px-8 font-mono text-xs font-semibold uppercase tracking-wider text-primary-foreground shadow-[0_0_20px_rgba(225,29,72,0.35)] hover:shadow-[0_0_30px_rgba(225,29,72,0.6)] transition-all duration-200 hover:opacity-95 active:scale-[0.98]'
           >
-            Explore all projects
+            Explore all {allProjects.length} projects
           </Link>
         </div>
       </div>

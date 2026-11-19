@@ -56,13 +56,13 @@ export default function ContactForm() {
     <div className='w-full'>
       <BorderGlow
         edgeSensitivity={28}
-        glowColor="345 80 65"
-        backgroundColor="#120F17"
+        glowColor="348 85 58"
+        backgroundColor="var(--card)"
         borderRadius={22}
         glowRadius={36}
         glowIntensity={0.85}
         coneSpread={24}
-        colors={['#ff2a85', '#e01e72', '#b5179e']}
+        colors={['#e11d48', '#8b5cf6', '#6366f1']}
         className="w-full"
       >
         <div className='p-8 sm:p-12'>

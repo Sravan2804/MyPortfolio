@@ -3,37 +3,45 @@ import BorderGlow from '@/components/ui/BorderGlow'
 
 export default function NotFound() {
   return (
-    <div className='flex min-h-[calc(100vh-8rem)] items-center justify-center px-4 pt-32 pb-24'>
-      <div className='w-full max-w-md'>
+    <div className='flex min-h-[calc(100vh-8rem)] items-center justify-center px-4 pt-28 pb-24 w-full'>
+      <div className='w-full max-w-lg'>
         <BorderGlow
           edgeSensitivity={30}
-          glowColor="345 80 65"
-          backgroundColor="#120F17"
+          glowColor="348 85 58"
+          backgroundColor="var(--card)"
           borderRadius={24}
           glowRadius={36}
           glowIntensity={0.9}
           coneSpread={24}
-          colors={['#ff2a85', '#e01e72', '#b5179e']}
-          className="w-full text-center p-8 sm:p-12"
+          colors={['#e11d48', '#8b5cf6', '#6366f1']}
+          className="w-full text-center p-8 sm:p-12 shadow-2xl"
         >
           <p className='font-mono text-xs font-semibold tracking-widest uppercase text-primary mb-3'>
             HTTP 404 Error
           </p>
 
-          <h1 className='font-serif text-5xl sm:text-6xl font-extrabold tracking-tight text-foreground mb-4'>
+          <h1 className='font-serif text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground mb-4'>
             Page Not Found
           </h1>
 
-          <p className='text-sm text-muted-foreground leading-relaxed mb-8'>
+          <p className='text-sm text-muted-foreground leading-relaxed mb-8 max-w-sm mx-auto'>
             The resource or endpoint you requested could not be resolved on this system.
           </p>
 
-          <Link
-            href='/'
-            className='inline-flex h-11 items-center justify-center rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground transition-all duration-200 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2'
-          >
-            Return to Homepage
-          </Link>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              href='/'
+              className='inline-flex h-11 items-center justify-center rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-sm hover:opacity-95 transition-all'
+            >
+              Return Home
+            </Link>
+            <Link
+              href='/projects'
+              className='inline-flex h-11 items-center justify-center rounded-lg border border-border/80 bg-card/60 px-6 text-sm font-medium text-foreground hover:border-primary/50 hover:text-primary transition-all'
+            >
+              View Projects
+            </Link>
+          </div>
         </BorderGlow>
       </div>
     </div>

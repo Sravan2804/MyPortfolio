@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { ArrowLeft } from 'lucide-react'
 
 import { formatDate } from '@/lib/utils'
 import MDXContent from '@/components/mdx-content'
 import { getProjectBySlug, getProjects } from '@/lib/projects'
 import { notFound } from 'next/navigation'
 import BorderGlow from '@/components/ui/BorderGlow'
-import RefineFrame from '@/components/ui/RefineFrame'
 
 // Allow on-demand rendering for GitHub repo slugs not pre-built at build time
 export const dynamicParams = true
@@ -34,19 +34,20 @@ export default async function Project({
   const { title, image, author, publishedAt } = metadata
 
   return (
-    <article className='pt-32 pb-24'>
-      <div className='container max-w-3xl px-4 sm:px-6'>
+    <article className='pt-32 pb-24 w-full'>
+      <div className='w-full max-w-[1200px] mx-auto px-6 sm:px-10 lg:px-16'>
         <div className='mb-8'>
           <Link
             href='/projects'
-            className='inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground transition-colors hover:text-primary'
+            className='inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground transition-colors hover:text-primary group min-h-[44px]'
           >
-            ← Back to all projects
+            <ArrowLeft className='h-3.5 w-3.5 transition-transform group-hover:-translate-x-1 text-primary' />
+            <span>Back to all projects</span>
           </Link>
         </div>
 
-        <header className='mb-10'>
-          <div className='flex items-center gap-3 text-xs font-medium text-primary mb-3 uppercase tracking-wider'>
+        <header className='mb-8 rounded-xl border border-border/40 bg-card/30 dark:bg-card/25 backdrop-blur-[2px] p-6 sm:p-8 shadow-md'>
+          <div className='flex items-center gap-3 text-xs font-mono font-medium text-primary mb-3 uppercase tracking-wider'>
             <span>{author || 'Rama Sravan'}</span>
             <span className='text-muted-foreground/40'>•</span>
             <time dateTime={publishedAt}>{formatDate(publishedAt ?? '')}</time>
@@ -57,45 +58,33 @@ export default async function Project({
         </header>
 
         {image && (
-          <div className='mb-12'>
+          <div className='mb-10'>
             <BorderGlow
               edgeSensitivity={30}
-              glowColor="345 80 65"
-              backgroundColor="#120F17"
-              borderRadius={20}
+              glowColor="22 90 52"
+              backgroundColor="var(--card)"
+              borderRadius={18}
               glowRadius={36}
               glowIntensity={0.85}
               coneSpread={24}
-              colors={['#ff2a85', '#e01e72', '#b5179e']}
-              className="p-1"
+              colors={['#e11d48', '#ffffff', '#e11d48']}
+              className="p-1 shadow-2xl"
             >
-              <div className='relative h-80 sm:h-96 w-full overflow-hidden rounded-2xl'>
-                <RefineFrame
-                  status="complete"
-                  aspectRatio="16 / 9"
-                  width={800}
-                  radius={16}
-                  background="#120F17"
-                  color="#ff2a85"
-                  stageDuration={400}
-                  sweep={true}
-                  showStatus={false}
-                  className="w-full h-full"
-                >
-                  <Image
-                    src={image}
-                    alt={title || ''}
-                    className='object-cover'
-                    fill
-                    priority
-                  />
-                </RefineFrame>
+              <div className='relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-card border border-border/40'>
+                <Image
+                  src={image}
+                  alt={title || ''}
+                  className='object-cover grayscale contrast-125 transition-all duration-700 hover:grayscale-0'
+                  fill
+                  sizes="(max-width: 1200px) 100vw, 1200px"
+                  priority
+                />
               </div>
             </BorderGlow>
           </div>
         )}
 
-        <main className='prose prose-zinc dark:prose-invert max-w-none prose-headings:font-serif prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline'>
+        <main className='rounded-xl border border-border/40 bg-card/30 dark:bg-card/25 backdrop-blur-[2px] p-8 sm:p-12 shadow-md prose prose-zinc dark:prose-invert max-w-none prose-headings:font-serif prose-headings:font-bold prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-pre:border prose-pre:border-border/60 prose-pre:bg-card/60 prose-blockquote:border-l-primary prose-blockquote:text-foreground'>
           <MDXContent
             source={content}
             options={isMarkdown ? { mdxOptions: { format: 'md' } } : undefined}

@@ -36,6 +36,8 @@ function buildGradientVars(colors) {
 }
 
 function isLightColor(color) {
+  if (!color || typeof color !== 'string') return false;
+  if (color.startsWith('var(')) return false;
   const value = color.trim().replace('#', '');
   if (!/^[\da-f]{3}([\da-f]{3})?$/i.test(value)) return false;
   const hex = value.length === 3 ? value.split('').map(char => char + char).join('') : value;
@@ -72,7 +74,7 @@ const BorderGlow = ({
   className = '',
   edgeSensitivity = 30,
   glowColor = '345 80 65',
-  backgroundColor = '#120F17',
+  backgroundColor = 'var(--card)',
   borderRadius = 28,
   glowRadius = 40,
   glowIntensity = 1.0,
