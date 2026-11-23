@@ -1,9 +1,10 @@
 'use client';
 
 import { Sun, Moon } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
+import { useMounted } from '@/lib/hooks/use-mounted';
 
 interface Particle {
   id: number;
@@ -15,7 +16,7 @@ export default function CinematicThemeSwitcher({ className = '' }: { className?:
   const { theme, setTheme, resolvedTheme } = useTheme();
 
   // State Management
-  const [mounted, setMounted] = useState(false);
+  const mounted = useMounted();
   const [particles, setParticles] = useState<Particle[]>([]);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -24,11 +25,6 @@ export default function CinematicThemeSwitcher({ className = '' }: { className?:
 
   // Track whether toggle is in checked (dark) or unchecked (light) position
   const isDark = mounted && (theme === 'dark' || resolvedTheme === 'dark');
-
-  // Handle hydration - prevent mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Generate particles with different timing
   const generateParticles = () => {

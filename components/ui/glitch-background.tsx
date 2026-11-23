@@ -1,16 +1,13 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useTheme } from 'next-themes'
 import GradientBlinds from '@/components/ui/GradientBlinds'
+import { useMounted } from '@/lib/hooks/use-mounted'
 
 export default function GlitchBackground() {
   const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const mounted = useMounted()
 
   if (!mounted) {
     return null

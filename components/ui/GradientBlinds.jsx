@@ -322,7 +322,6 @@ const GradientBlinds = ({
     dpr
   };
   const settingsRef = useRef(settings);
-  settingsRef.current = settings;
 
   useEffect(() => {
     const container = containerRef.current;
@@ -570,6 +569,7 @@ const GradientBlinds = ({
   }, []);
 
   useEffect(() => {
+    settingsRef.current = settings;
     wakeRef.current?.();
   });
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Roboto_Slab } from "next/font/google";
+import { Playfair_Display, Roboto_Slab, Sedgwick_Ave_Display } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Providers from "@/components/ui/providers";
@@ -21,6 +21,13 @@ const robotoSlab = Roboto_Slab({
   display: "swap",
 });
 
+const sedgwick = Sedgwick_Ave_Display({
+  weight: "400",
+  variable: "--font-sedgwick",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Rama Sravan Gunda | AI Engineer",
   description: "Portfolio of Rama Sravan Gunda, an AI Engineer based in Ireland.",
@@ -34,16 +41,12 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
-        <head>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-          <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap" rel="stylesheet" />
-        </head>
         <body
           className={cn(
             "flex min-h-screen flex-col antialiased relative bg-background text-foreground font-sans",
             playfair.variable,
-            robotoSlab.variable
+            robotoSlab.variable,
+            sedgwick.variable
           )}
         >
           <Providers>

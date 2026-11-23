@@ -30,7 +30,6 @@ export function InfiniteSlider({
 
   const [contentSize, setContentSize] = useState(0);
   const [containerSize, setContainerSize] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
 
   const isVertical = direction === 'vertical';
 
@@ -144,17 +143,11 @@ export function InfiniteSlider({
 
   const handleMouseEnter = useCallback(() => {
     isHoveredRef.current = true;
-    if (speedOnHover !== undefined || durationOnHover !== undefined) {
-      setIsHovered(true);
-    }
-  }, [speedOnHover, durationOnHover]);
+  }, []);
 
   const handleMouseLeave = useCallback(() => {
     isHoveredRef.current = false;
-    if (speedOnHover !== undefined || durationOnHover !== undefined) {
-      setIsHovered(false);
-    }
-  }, [speedOnHover, durationOnHover]);
+  }, []);
 
   return (
     <div
