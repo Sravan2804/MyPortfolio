@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowLeft } from 'lucide-react'
+import type { Metadata } from 'next'
 
 import { formatDate } from '@/lib/utils'
 import MDXContent from '@/components/mdx-content'
@@ -10,6 +11,21 @@ import BorderGlow from '@/components/ui/BorderGlow'
 
 // Allow on-demand rendering for GitHub repo slugs not pre-built at build time
 export const dynamicParams = true
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const project = await getProjectBySlug(slug)
+  if (!project) return { title: 'Project Not Found' }
+
+  return {
+    title: project.metadata.title || slug,
+    description: project.metadata.summary || 'Architecture details and technical implementation.',
+  }
+}
 
 export async function generateStaticParams() {
   const projects = await getProjects()

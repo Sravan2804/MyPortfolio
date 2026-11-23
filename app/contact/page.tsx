@@ -1,6 +1,12 @@
 import ContactForm from "@/components/contact-form";
 import BorderGlow from "@/components/ui/BorderGlow";
 import { Mail, MapPin, Clock } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Get in touch with Rama Sravan Gunda for AI engineering roles, collaborative research, or project consultations.",
+};
 
 export default function ContactPage() {
   return (
@@ -13,7 +19,7 @@ export default function ContactPage() {
           <h1 className="font-serif text-4xl sm:text-5xl font-extrabold tracking-tight text-foreground">
             Get in Touch
           </h1>
-          <p className="mt-3 text-base sm:text-lg text-foreground/90 dark:text-zinc-200 leading-relaxed max-w-2xl font-serif">
+          <p className="mt-3 text-base sm:text-lg text-foreground/90 dark:text-zinc-200 leading-relaxed max-w-2xl font-sans">
             Whether you are discussing AI engineering roles, collaborative research, or high-throughput computer vision pipelines, feel free to reach out.
           </p>
         </header>
@@ -74,7 +80,7 @@ export default function ContactPage() {
                     <div>
                       <p className="text-xs font-mono uppercase tracking-wider text-muted-foreground">Direct Email</p>
                       <a
-                        href="mailto:contact@sravan.dev"
+                        href="mailto:ramasravan7@gmail.com"
                         className="font-medium text-foreground hover:text-primary transition-colors underline underline-offset-4 decoration-border hover:decoration-primary"
                       >
                         ramasravan7@gmail.com

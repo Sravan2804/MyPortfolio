@@ -36,7 +36,7 @@ export default function ExperienceTimeline() {
   return (
     <div className="relative mx-auto max-w-4xl px-4 sm:px-6">
       {/* Illuminated glowing line */}
-      <div className="absolute left-[39px] sm:left-1/2 sm:-ml-[1px] top-0 h-full w-[2px] bg-gradient-to-b from-primary via-primary/50 to-transparent" />
+      <div className="absolute left-[23px] sm:left-1/2 sm:-ml-[1px] top-0 h-full w-[2px] bg-gradient-to-b from-primary via-primary/50 to-transparent" />
       
       <div className="space-y-16">
         {timeline.map((item, index) => (
@@ -47,12 +47,12 @@ export default function ExperienceTimeline() {
             } items-start sm:items-center sm:justify-between group`}
           >
             {/* Timeline Dot */}
-            <div className="absolute left-[15px] sm:left-1/2 sm:-ml-6 flex h-12 w-12 items-center justify-center rounded-full border-4 border-background bg-primary shadow-[0_0_15px] shadow-primary/50 transition-transform duration-500 group-hover:scale-110 z-10">
+            <div className="absolute left-[3px] sm:left-1/2 sm:-ml-6 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full border-4 border-background bg-primary shadow-[0_0_15px] shadow-primary/50 transition-transform duration-500 group-hover:scale-110 z-10">
               <div className="text-primary-foreground">{item.icon}</div>
             </div>
 
             {/* Content Box with BorderGlow */}
-            <div className="ml-24 w-full sm:ml-0 sm:w-[45%]">
+            <div className="ml-14 w-full sm:ml-0 sm:w-[45%]">
               <BorderGlow
                 edgeSensitivity={30}
                 glowColor="22 90 52"

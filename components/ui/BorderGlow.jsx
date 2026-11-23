@@ -85,47 +85,39 @@ const BorderGlow = ({
 }) => {
   const cardRef = useRef(null);
 
-  const getCenterOfElement = useCallback((el) => {
-    const { width, height } = el.getBoundingClientRect();
-    return [width / 2, height / 2];
-  }, []);
-
-  const getEdgeProximity = useCallback((el, x, y) => {
-    const [cx, cy] = getCenterOfElement(el);
-    const dx = x - cx;
-    const dy = y - cy;
-    let kx = Infinity;
-    let ky = Infinity;
-    if (dx !== 0) kx = cx / Math.abs(dx);
-    if (dy !== 0) ky = cy / Math.abs(dy);
-    return Math.min(Math.max(1 / Math.min(kx, ky), 0), 1);
-  }, [getCenterOfElement]);
-
-  const getCursorAngle = useCallback((el, x, y) => {
-    const [cx, cy] = getCenterOfElement(el);
-    const dx = x - cx;
-    const dy = y - cy;
-    if (dx === 0 && dy === 0) return 0;
-    const radians = Math.atan2(dy, dx);
-    let degrees = radians * (180 / Math.PI) + 90;
-    if (degrees < 0) degrees += 360;
-    return degrees;
-  }, [getCenterOfElement]);
-
   const handlePointerMove = useCallback((e) => {
     const card = cardRef.current;
     if (!card) return;
 
     const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const dx = (e.clientX - rect.left) - cx;
+    const dy = (e.clientY - rect.top) - cy;
 
-    const edge = getEdgeProximity(card, x, y);
-    const angle = getCursorAngle(card, x, y);
+    let edge = 0;
+    if (cx > 0 && cy > 0) {
+      const kx = dx !== 0 ? cx / Math.abs(dx) : Infinity;
+      const ky = dy !== 0 ? cy / Math.abs(dy) : Infinity;
+      edge = Math.min(Math.max(1 / Math.min(kx, ky), 0), 1);
+    }
+
+    let angle = 0;
+    if (dx !== 0 || dy !== 0) {
+      const radians = Math.atan2(dy, dx);
+      angle = radians * (180 / Math.PI) + 90;
+      if (angle < 0) angle += 360;
+    }
 
     card.style.setProperty('--edge-proximity', `${(edge * 100).toFixed(3)}`);
     card.style.setProperty('--cursor-angle', `${angle.toFixed(3)}deg`);
-  }, [getEdgeProximity, getCursorAngle]);
+  }, []);
+
+  const handlePointerLeave = useCallback(() => {
+    const card = cardRef.current;
+    if (!card) return;
+    card.style.setProperty('--edge-proximity', '0');
+  }, []);
 
   useEffect(() => {
     if (!animated || !cardRef.current) return;
@@ -162,6 +154,7 @@ const BorderGlow = ({
     <div
       ref={cardRef}
       onPointerMove={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
       className={`border-glow-card${lightSurface ? ' border-glow-card--light' : ''} ${className}`}
       style={{
         '--card-bg': backgroundColor,

@@ -29,8 +29,28 @@ const sedgwick = Sedgwick_Ave_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Rama Sravan Gunda | AI Engineer",
-  description: "Portfolio of Rama Sravan Gunda, an AI Engineer based in Ireland.",
+  metadataBase: new URL('https://ramasravan.dev'),
+  title: {
+    default: "Rama Sravan Gunda | AI Engineer",
+    template: "%s | Rama Sravan Gunda",
+  },
+  description: "Portfolio of Rama Sravan Gunda, an AI Engineer based in Ireland specializing in Computer Vision, Autonomous Agents, and ML Systems.",
+  keywords: ["AI Engineer", "Computer Vision", "Machine Learning", "Deep Learning", "LangGraph", "YOLOv8", "PyTorch", "Rama Sravan Gunda"],
+  authors: [{ name: "Rama Sravan Gunda", url: "https://github.com/Sravan2804" }],
+  openGraph: {
+    type: "website",
+    locale: "en_IE",
+    url: "https://ramasravan.dev",
+    title: "Rama Sravan Gunda | AI Engineer",
+    description: "Portfolio of Rama Sravan Gunda, an AI Engineer based in Ireland specializing in Computer Vision, Autonomous Agents, and ML Systems.",
+    siteName: "Rama Sravan Gunda Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rama Sravan Gunda | AI Engineer",
+    description: "Portfolio of Rama Sravan Gunda, an AI Engineer based in Ireland.",
+    creator: "@rama_sravan",
+  },
 };
 
 export default function RootLayout({

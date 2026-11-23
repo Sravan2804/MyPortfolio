@@ -1,5 +1,11 @@
 import Projects from '@/components/projects'
 import { getProjects } from '@/lib/projects'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Projects',
+  description: 'A dossier of machine learning pipelines, autonomous AI agents, and computer vision architectures designed for production scalability.',
+}
 
 export default async function ProjectsPage() {
   const projects = await getProjects()

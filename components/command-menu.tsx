@@ -42,6 +42,9 @@ export default function CommandMenu() {
 
   return (
     <div 
+      role="dialog"
+      aria-modal="true"
+      aria-label="Command palette"
       className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] sm:pt-[20vh] bg-background/80 backdrop-blur-sm px-4"
       onClick={() => setOpen(false)}
     >

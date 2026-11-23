@@ -2,6 +2,12 @@ import ExperienceTimeline from "@/components/experience-timeline"
 import TechMarquee from "@/components/tech-marquee"
 import BorderGlow from "@/components/ui/BorderGlow"
 import { GraduationCap, Brain, Compass } from "lucide-react"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "Learn more about Rama Sravan Gunda, AI and Software Engineer specializing in Computer Vision, Autonomous Agents, and ML systems.",
+}
 
 export default function AboutPage() {
   return (

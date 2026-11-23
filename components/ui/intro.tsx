@@ -27,7 +27,7 @@ export default function Intro() {
               IDENTITY // 01
             </span>
           </div>
-          <h2 className="sedgwick-ave-display-regular text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-normal tracking-wide text-primary leading-none select-none -rotate-2 transform origin-bottom-left drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)] dark:drop-shadow-[0_4px_24px_rgba(225,29,72,0.6)] pl-0.5">
+          <h2 className="sedgwick-ave-display-regular text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-normal tracking-wide text-primary leading-none select-none -rotate-2 transform origin-bottom-left drop-shadow-sm dark:drop-shadow-[0_4px_24px_rgba(225,29,72,0.6)] pl-0.5">
             Hey, I&apos;m
           </h2>
         </div>
@@ -82,8 +82,8 @@ export default function Intro() {
             </span>
           </div>
 
-          {/* Bio paragraph: High-contrast typography with dark text-shadow to prevent washout */}
-          <p className="mt-5 text-base sm:text-lg text-foreground/95 dark:text-zinc-100 leading-relaxed max-w-2xl font-serif drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
+          {/* Bio paragraph: High-contrast typography */}
+          <p className="mt-5 text-base sm:text-lg text-foreground/95 dark:text-zinc-100 leading-relaxed max-w-2xl font-serif">
             I design and deploy production-grade <span className="text-foreground dark:text-white font-semibold underline decoration-primary/50 underline-offset-4">intelligent systems</span>, specialising in autonomous agentic workflows, LLM orchestration, and high-performance computer vision pipelines.
           </p>
 

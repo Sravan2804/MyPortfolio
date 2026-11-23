@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 
 import './TechText.css';
 
@@ -65,41 +65,42 @@ const TechText = ({
   className = '',
   style
 }) => {
+  const settings = {
+    text,
+    fontFamily,
+    fontWeight,
+    fontSize,
+    letterSpacing,
+    color,
+    accentColor,
+    align,
+    reach,
+    softness,
+    dashLength,
+    dashGap,
+    strokeWidth,
+    lineStyle,
+    reveal,
+    specks,
+    selection,
+    labels,
+    draggable,
+    bounce,
+    sweep,
+    speed,
+    clickKick,
+    intro,
+    introDuration,
+    guides
+  };
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
-  const settingsRef = useRef(null);
+  const settingsRef = useRef(settings);
   const wakeRef = useRef(() => {});
 
-  useEffect(() => {
-    settingsRef.current = {
-      text,
-      fontFamily,
-      fontWeight,
-      fontSize,
-      letterSpacing,
-      color,
-      accentColor,
-      align,
-      reach,
-      softness,
-      dashLength,
-      dashGap,
-      strokeWidth,
-      lineStyle,
-      reveal,
-      specks,
-      selection,
-      labels,
-      draggable,
-      bounce,
-      sweep,
-      speed,
-      clickKick,
-      intro,
-      introDuration,
-      guides
-    };
-    wakeRef.current();
+  useLayoutEffect(() => {
+    settingsRef.current = settings;
+    wakeRef.current?.();
   });
 
   useEffect(() => {

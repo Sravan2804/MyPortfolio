@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import CinematicThemeSwitcher from '@/components/ui/cinematic-theme-switcher'
+import ThemeToggle from '@/components/ui/theme-toggle'
 import { Search } from 'lucide-react'
 
 const navLinks = [
@@ -82,9 +82,7 @@ export default function Header() {
 
           {/* Cinematic Theme Switcher */}
           <div className='border-l border-border/60 pl-2.5 sm:pl-4 flex items-center'>
-            <div className='relative flex items-center justify-center w-[58px] sm:w-[60px] h-[36px]'>
-              <CinematicThemeSwitcher className='origin-center scale-[0.52] sm:scale-[0.55]' />
-            </div>
+            <ThemeToggle />
           </div>
         </div>
       </nav>

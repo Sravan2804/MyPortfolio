@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
-import { Search, X } from 'lucide-react'
+import { Search, X, FolderGit2 } from 'lucide-react'
 
 import { ProjectMetadata } from '@/lib/projects'
 import { formatDate } from '@/lib/utils'
@@ -97,7 +97,7 @@ export default function Projects({
                     href={`/projects/${project.slug}`}
                     className='flex flex-col sm:flex-row gap-6 p-6 sm:p-7 no-underline w-full group'
                   >
-                    {project.image && (
+                    {project.image ? (
                       <div className='relative w-full sm:w-56 h-40 sm:h-36 shrink-0 overflow-hidden rounded-lg bg-muted/30 border border-border/40'>
                         <Image
                           src={project.image}
@@ -106,6 +106,15 @@ export default function Projects({
                           sizes="(max-width: 640px) 100vw, 240px"
                           className='object-cover object-center grayscale contrast-125 transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105'
                         />
+                      </div>
+                    ) : (
+                      <div className='relative w-full sm:w-56 h-32 sm:h-36 shrink-0 overflow-hidden rounded-lg bg-card/80 border border-border/60 flex flex-col items-center justify-center p-4 text-center group-hover:border-primary/40 transition-colors'>
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary mb-2">
+                          <FolderGit2 className="h-5 w-5" />
+                        </div>
+                        <span className="text-[10px] font-mono tracking-wider uppercase text-muted-foreground/90">
+                          Architecture
+                        </span>
                       </div>
                     )}
 

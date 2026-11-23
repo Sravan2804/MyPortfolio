@@ -36,6 +36,8 @@
     rgb(24 24 27 / 5%) 0 8px 24px;
 }
 
+:root:not(.dark) .border-glow-card::after,
+:root:not(.dark) .border-glow-card > .edge-light,
 .border-glow-card--light::after,
 .border-glow-card--light > .edge-light {
   mix-blend-mode: normal;
