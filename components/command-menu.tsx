@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Command } from 'cmdk'
 import { useRouter } from 'next/navigation'
 import { FolderGit2, Home, Mail, Moon, Sun, User } from 'lucide-react'
@@ -11,19 +11,36 @@ export default function CommandMenu() {
   const [open, setOpen] = useState(false)
   const router = useRouter()
   const { setTheme } = useTheme()
+  const invokingElementRef = useRef<HTMLElement | null>(null)
+  const dialogRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault()
-        setOpen((open) => !open)
+        setOpen(prev => {
+          if (!prev) {
+            invokingElementRef.current = document.activeElement as HTMLElement | null
+            return true
+          }
+          return false
+        })
       }
       if (e.key === 'Escape') {
         setOpen(false)
       }
     }
 
-    const toggleMenu = () => setOpen(prev => !prev)
+    const toggleMenu = () => {
+      setOpen(prev => {
+        if (!prev) {
+          invokingElementRef.current = document.activeElement as HTMLElement | null
+          return true
+        }
+        return false
+      })
+    }
 
     window.addEventListener('toggle-command-menu', toggleMenu)
     document.addEventListener('keydown', down)
@@ -32,6 +49,50 @@ export default function CommandMenu() {
       document.removeEventListener('keydown', down)
     }
   }, [])
+
+  // Focus management: move focus inside on open, restore to invoking control on close
+  useEffect(() => {
+    if (open) {
+      if (!invokingElementRef.current && document.activeElement instanceof HTMLElement) {
+        invokingElementRef.current = document.activeElement
+      }
+      const timer = setTimeout(() => {
+        inputRef.current?.focus()
+      }, 10)
+      return () => clearTimeout(timer)
+    } else if (invokingElementRef.current) {
+      invokingElementRef.current.focus()
+      invokingElementRef.current = null
+    }
+  }, [open])
+
+  // Focus trap: keep Tab and Shift+Tab within the dialog
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Tab') {
+      if (!dialogRef.current) return
+      const focusableElements = dialogRef.current.querySelectorAll<HTMLElement>(
+        'input:not([disabled]), button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])'
+      )
+      if (focusableElements.length === 0) {
+        e.preventDefault()
+        return
+      }
+      const first = focusableElements[0]
+      const last = focusableElements[focusableElements.length - 1]
+
+      if (e.shiftKey) {
+        if (document.activeElement === first || !dialogRef.current.contains(document.activeElement)) {
+          e.preventDefault()
+          last.focus()
+        }
+      } else {
+        if (document.activeElement === last || !dialogRef.current.contains(document.activeElement)) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
+    }
+  }
 
   const runCommand = (command: () => void) => {
     setOpen(false)
@@ -42,9 +103,11 @@ export default function CommandMenu() {
 
   return (
     <div 
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-label="Command palette"
+      onKeyDown={handleKeyDown}
       className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh] sm:pt-[20vh] bg-background/80 backdrop-blur-sm px-4"
       onClick={() => setOpen(false)}
     >
@@ -65,6 +128,7 @@ export default function CommandMenu() {
         >
           <Command className="flex h-full w-full flex-col overflow-hidden bg-card/95">
             <Command.Input 
+              ref={inputRef}
               placeholder="Type a command or search..." 
               className="w-full border-b border-border/50 bg-transparent px-6 py-4 text-base outline-none placeholder:text-muted-foreground focus:ring-0 text-foreground" 
             />

@@ -21,9 +21,31 @@ export async function generateMetadata({
   const project = await getProjectBySlug(slug)
   if (!project) return { title: 'Project Not Found' }
 
+  const title = project.metadata.title || slug
+  const fullTitle = `${title} | Rama Sravan Gunda`
+  const description = project.metadata.summary || 'Architecture details and technical implementation.'
+  const url = `https://ramasravan.dev/projects/${slug}`
+  const images = project.metadata.image ? [project.metadata.image] : undefined
+
   return {
-    title: project.metadata.title || slug,
-    description: project.metadata.summary || 'Architecture details and technical implementation.',
+    title,
+    description,
+    openGraph: {
+      title: fullTitle,
+      description,
+      url,
+      type: 'article',
+      publishedTime: project.metadata.publishedAt,
+      authors: [project.metadata.author || 'Rama Sravan Gunda'],
+      images,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: fullTitle,
+      description,
+      images,
+      creator: '@rama_sravan',
+    },
   }
 }
 

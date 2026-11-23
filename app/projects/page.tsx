@@ -5,6 +5,18 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Projects',
   description: 'A dossier of machine learning pipelines, autonomous AI agents, and computer vision architectures designed for production scalability.',
+  openGraph: {
+    title: 'Projects | Rama Sravan Gunda',
+    description: 'A dossier of machine learning pipelines, autonomous AI agents, and computer vision architectures designed for production scalability.',
+    url: 'https://ramasravan.dev/projects',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Projects | Rama Sravan Gunda',
+    description: 'A dossier of machine learning pipelines, autonomous AI agents, and computer vision architectures designed for production scalability.',
+    creator: '@rama_sravan',
+  },
 }
 
 export default async function ProjectsPage() {

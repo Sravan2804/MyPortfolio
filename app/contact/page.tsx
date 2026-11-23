@@ -6,6 +6,18 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact",
   description: "Get in touch with Rama Sravan Gunda for AI engineering roles, collaborative research, or project consultations.",
+  openGraph: {
+    title: "Contact | Rama Sravan Gunda",
+    description: "Get in touch with Rama Sravan Gunda for AI engineering roles, collaborative research, or project consultations.",
+    url: "https://ramasravan.dev/contact",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact | Rama Sravan Gunda",
+    description: "Get in touch with Rama Sravan Gunda for AI engineering roles, collaborative research, or project consultations.",
+    creator: "@rama_sravan",
+  },
 };
 
 export default function ContactPage() {
