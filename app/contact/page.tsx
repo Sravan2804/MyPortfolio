@@ -77,7 +77,7 @@ export default function ContactPage() {
                         href="mailto:contact@sravan.dev"
                         className="font-medium text-foreground hover:text-primary transition-colors underline underline-offset-4 decoration-border hover:decoration-primary"
                       >
-                        ramasravangunda@gmail.com
+                        ramasravan7@gmail.com
                       </a>
                     </div>
                   </div>
