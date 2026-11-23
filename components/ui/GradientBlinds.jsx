@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import './GradientBlinds.css';
 
 const MAX_COLORS = 8;
@@ -568,7 +568,7 @@ const GradientBlinds = ({
     };
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     settingsRef.current = settings;
     wakeRef.current?.();
   });
